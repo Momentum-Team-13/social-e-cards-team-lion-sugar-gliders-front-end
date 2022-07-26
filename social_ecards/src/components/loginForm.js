@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { getAuthToken } from "./usernames";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ export default function LoginForm() {
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
     console.log({ username }, { password });
     axios
-      .get("usernames.js", {
+      .post("usernames.js", {
         username: { username },
         password: { password },
       })
@@ -21,7 +22,7 @@ export default function LoginForm() {
     <>
       <h1> E-Cards Login</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={getAuthToken}>
         <>
           <label htmlFor="username-field"> username</label>
           <input

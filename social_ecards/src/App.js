@@ -18,7 +18,7 @@ function App() {
       // token={token}
       /> */}
       {/* <LogInForm onSubmit={(e) => console.log(e)} /> */}
-      <>
+      {/* <>
         <span>
           click <a href="google.com">HERE </a> to log in |
         </span>
@@ -26,11 +26,11 @@ function App() {
         <span>
           | click <a href="LINK">HERE</a> to create a username
         </span>
-      </>
-
-      <button onClick={(e) => setLoggedIn(true)}> Log Me In</button>
+      </> */}
+      {/* 
+      <button onClick={(e) => setLoggedIn(true)}> Log Me In</button> */}
       <UserList />
-      <LogInForm />
+      {/* <LogInForm /> */}
     </div>
   );
 }
