@@ -9,17 +9,18 @@ export default function LoginForm() {
     event.preventDefault();
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
     console.log({ username }, { password });
-    // axios
-    //   .post("BACKEND URL HERE", {
-    //     username: { username },
-    //     password: { password },
-    //   })
-    //   .then((res) => console.log(res));
+    axios
+      .get("usernames.js", {
+        username: { username },
+        password: { password },
+      })
+      .then((res) => console.log(res));
   };
 
   return (
     <>
       <h1> E-Cards Login</h1>
+
       <form onSubmit={handleSubmit}>
         <>
           <label htmlFor="username-field"> username</label>

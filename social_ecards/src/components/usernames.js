@@ -21,3 +21,26 @@ export const USERS = [
     },
   },
 ];
+
+let lastUserId = 3;
+
+export function getAuthToken(username, password) {
+  return new Promise((resolve, reject) => {
+    resolve({ token: "testtoken" });
+  });
+}
+
+export function getUsers(authToken) {
+  return new Promise((resolve, reject) => {
+    resolve({ USERS: USERS });
+  });
+}
+
+export function storeUser(authoken, user) {
+  lastUserId += 1;
+  user.id = lastUserId;
+  USERS.push(user);
+  return new Promise((resolve, reject) => {
+    resolve(user);
+  });
+}
