@@ -42,12 +42,13 @@ export const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-    event
-      .preventDefault()
-      // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
-      .post("URL", {
-        username: "admin",
-        password: "admin",
+    event.preventDefault();
+    // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
+    console
+      .log("login attempt")
+      .post("http://localhost:3000/", {
+        username: { username },
+        password: { password },
       })
       .then((res) => console.log(res));
   };
@@ -63,15 +64,17 @@ export const LoginForm = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </>
-      <>
-        <label htmlFor="password-field"> password</label>
-        <input
-          id="password-field"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </>
-      <button> Log in</button>
+      <form>
+        <>
+          <label htmlFor="password-field"> password</label>
+          <input
+            id="password-field"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </>
+        <button type="submit"> Log in</button>
+      </form>
     </>
   );
 };
