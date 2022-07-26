@@ -9,6 +9,7 @@ export function UserList({ authToken }) {
 
   useEffect(() => {
     getUsers(authToken).then((res) => {
+      console.log(res);
       setUsers(res.USERS);
       setAdmin(res.USERS[0]);
       setLisa(res.USERS[1]);
@@ -25,6 +26,7 @@ export function UserList({ authToken }) {
           <article>Hello, {admin.username}</article>
           <article>
             Hello, {lisa.username}
+            <img src={lisa.profile_image_url} alt="profile" />
             <ul>Following</ul>
             {isFollowing && (
               <li>

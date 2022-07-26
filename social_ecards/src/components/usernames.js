@@ -4,7 +4,7 @@ export const USERS = [
     user_id: 2,
     username: "lisa",
     password: "williams",
-    profile_image_url: "www.placekitten.com",
+    profile_image_url: "http://placekitten.com/200/300",
     is_following: {
       id: 3,
       username: "carlos",
@@ -14,7 +14,7 @@ export const USERS = [
     user_id: 3,
     username: "carlos",
     password: "tirado",
-    profile_image_url: "www.placekitten.com",
+    profile_image_url: "http://placekitten.com/200/300",
     is_following: {
       user_id: 2,
       username: "lisa",
