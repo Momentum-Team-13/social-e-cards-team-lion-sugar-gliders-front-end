@@ -1,4 +1,4 @@
-import { getUsers } from "./usernames";
+import { getUsers, USERS } from "./usernames";
 import { useState, useEffect } from "react";
 
 export function UserList({ authToken }) {
@@ -6,9 +6,8 @@ export function UserList({ authToken }) {
 
   useEffect(() => {
     getUsers(authToken).then((res) => {
-      setUsers(res.users);
-      console.log(users);
+      console.log(res);
     });
   });
-  return <div> Hello {users}</div>;
+  return <div> Hello</div>;
 }
