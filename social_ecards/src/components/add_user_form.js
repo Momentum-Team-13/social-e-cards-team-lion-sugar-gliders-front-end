@@ -2,10 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { getAuthToken } from "./usernames";
 
-export default function AddUserForm() {
+export default function AddUserForm({ baseURL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [baseURL, setBaseURL] = useState("https://sg-ecard-api.herokuapp.com/");
+  // const token = localStorage.getItem("auth_token");
+
+  // const displayUserNameErrors = () => {};
+
+  // const displayPasswordErrors = () => {};
 
   const AddUser = (event) => {
     event.preventDefault();
@@ -15,7 +19,12 @@ export default function AddUserForm() {
         username: username,
         password: password,
       })
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .catch((res) => {
+        console.log(res);
+        let username = res.response.data.username;
+        let password = res.response.data.password;
+      });
   };
 
   return (

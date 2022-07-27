@@ -23,3 +23,9 @@ staying "logged in" means your auth_token/sessionID stays the same
 we set the auth_token as state
 
 include errors from API ifError()
+
+localStorage.setItem('highScore', highScore);
+
+localStorage.setItem('token', <TOKEN>)
+
+localStorage.getItem('token')

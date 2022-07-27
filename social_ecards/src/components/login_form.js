@@ -5,6 +5,7 @@ export default function LoginForm({ baseURL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
+  const [error, setError] = useState(false);
 
   const LogIn = (event) => {
     event.preventDefault();
@@ -17,6 +18,8 @@ export default function LoginForm({ baseURL }) {
       .then((res) => {
         let auth_token = res.data.auth_token;
         setAuthToken(auth_token);
+        console.log(auth_token);
+        localStorage.setItem("auth_token", auth_token);
       });
   };
 
