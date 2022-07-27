@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function AllCards() {
   const [cardIndex, setCardIndex] = useState(0);
+  const [openCard, setOpenCard] = useState(false);
 
   console.log(CARDFORM);
   let firstCard = CARDFORM[0];
@@ -27,8 +28,19 @@ export default function AllCards() {
         <h2>card {cardIndex}</h2>
         <img src={image} alt="profile image" />
         <p>created by: {created_by}</p>
-        <p>inner message: {inner_message}</p>
         <p>outer message: {outer_message}</p>
+        {openCard ? (
+          <>
+            <p>inner message: {inner_message}</p>
+            <div onClick={() => setOpenCard(false)}>
+              Click to hide inner message!
+            </div>
+          </>
+        ) : (
+          <div onClick={(e) => setOpenCard(true)}>
+            Click to see inner message!
+          </div>
+        )}
       </div>
     </>
   );
