@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { getAuthToken } from "./usernames";
+import { getAuthToken } from "./mockdata";
 
 export default function AddUserForm({ baseURL }) {
   const [username, setUsername] = useState("");

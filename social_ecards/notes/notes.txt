@@ -18,6 +18,8 @@ cookies are a semi permanent place to stash information that live in key/value p
 
 after submitting a loginForm you receive back a sessionID (like a stamp on the hand at a show) (sessionID is in browser, auth_token is in API)
 
+work on .catch()
+
 staying "logged in" means your auth_token/sessionID stays the same
 
 we set the auth_token as state

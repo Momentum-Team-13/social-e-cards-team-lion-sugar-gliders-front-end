@@ -1,7 +1,7 @@
 .from_andres{
   display:flex;
   width: 300px;
-  border: 3px solid green;
+  border: 3px solid #008000;
   flex-direction: column;
 }
 
