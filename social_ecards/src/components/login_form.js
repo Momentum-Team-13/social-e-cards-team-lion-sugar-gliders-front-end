@@ -5,7 +5,7 @@ export default function LoginForm({ baseURL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState([]);
 
   const LogIn = (event) => {
     event.preventDefault();
@@ -20,6 +20,10 @@ export default function LoginForm({ baseURL }) {
         setAuthToken(auth_token);
         console.log(auth_token);
         localStorage.setItem("auth_token", auth_token);
+      })
+      .catch((res) => {
+        let error = res.response.data.non_field_errors;
+        setError(error);
       });
   };
 
@@ -48,6 +52,7 @@ export default function LoginForm({ baseURL }) {
           Log in
         </button>
       </form>
+      {error && <div>{error}</div>}
     </div>
   );
 }
