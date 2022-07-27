@@ -2,25 +2,25 @@ import { useState } from "react";
 import axios from "axios";
 import { getAuthToken } from "./usernames";
 
-export default function LoginForm() {
+export default function AddUserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [baseURL, setBaseURL] = useState("https://sg-ecard-api.herokuapp.com/");
 
-  const handleSubmit = (event) => {
+  const AddUser = (event) => {
     event.preventDefault();
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
-    console.log({ username }, { password });
     axios
-      .post("usernames.js", {
-        username: { username },
-        password: { password },
+      .post(`${baseURL}auth/users/`, {
+        username: username,
+        password: password,
       })
       .then((res) => console.log(res));
   };
 
   return (
     <>
-      <h1> E-Cards Login</h1>
+      <h1> Add User</h1>
 
       <form onSubmit={getAuthToken}>
         <>
@@ -39,7 +39,10 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </>
-        <button type="submit"> Log in</button>
+        <button type="submit" onClick={(e) => AddUser(e)}>
+          {" "}
+          Add User
+        </button>
       </form>
     </>
   );

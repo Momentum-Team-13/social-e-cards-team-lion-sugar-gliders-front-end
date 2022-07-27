@@ -9,12 +9,12 @@ export function UserList({ authToken }) {
 
   useEffect(() => {
     getUsers(authToken).then((res) => {
-      console.log(res);
+      // console.log(res);
       setUsers(res.USERS);
       setAdmin(res.USERS[0]);
       setLisa(res.USERS[1]);
       let lisaIsFollowing = res.USERS[1].is_following;
-      console.log(lisaIsFollowing);
+      // console.log(lisaIsFollowing);
       setIsFollowing(lisaIsFollowing);
     });
   }, [authToken]);
