@@ -50,15 +50,17 @@ const CARDFORM = [
     color: "#008000",
     inner_message: "sample inner message",
     outer_message: "sample outer message",
-    image: "https://placekitten.com",
+    image: "https://placekitten.com/200/300/",
     created_by: "username",
   },
 ];
 
-const USER = [
+export const USER = [
   {
     name: "name",
     username: "username",
     email: "email",
   },
 ];
+
+export default CARDFORM;

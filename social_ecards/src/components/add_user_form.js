@@ -8,10 +8,6 @@ export default function AddUserForm({ baseURL }) {
   const [error, setError] = useState([]);
   // const token = localStorage.getItem("auth_token");
 
-  // const displayUserNameErrors = () => {};
-
-  // const displayPasswordErrors = () => {};
-
   const AddUser = (event) => {
     event.preventDefault();
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
@@ -38,26 +34,26 @@ export default function AddUserForm({ baseURL }) {
   };
 
   return (
-    <>
+    <div className="add_user">
       <h1> Add User</h1>
 
       <form onSubmit={getAuthToken}>
-        <>
+        <div>
           <label htmlFor="username-field"> username</label>
           <input
             id="username-field"
             type="text"
             onChange={(e) => setUsername(e.target.value)}
           />
-        </>
-        <>
+        </div>
+        <div>
           <label htmlFor="password-field"> password</label>
           <input
             id="password-field"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </>
+        </div>
         <button type="submit" onClick={(e) => AddUser(e)}>
           {" "}
           Add User
@@ -65,6 +61,6 @@ export default function AddUserForm({ baseURL }) {
       </form>
 
       {error && <div>{error}</div>}
-    </>
+    </div>
   );
 }

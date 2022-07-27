@@ -6,6 +6,8 @@ import { UserList } from "./components/loginPage";
 import LogInForm from "./components/login_form.js";
 import axios from "axios";
 import he from "he";
+import AllCards from "./components/allCardsPage";
+import CARDFORM from "./components/mockdata";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,10 +47,8 @@ function App() {
       </> */}
 
         <LogInForm baseURL={baseURL} />
-
-        {/* <AddUserForm baseURL={baseURL} /> */}
-        {/* <button onClick={(e) => setLoggedIn(true)}> Log Me In</button> */}
-        {/* <UserList /> */}
+        <AddUserForm baseURL={baseURL} />
+        <AllCards />
       </div>
     </>
   );
