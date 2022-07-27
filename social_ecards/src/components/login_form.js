@@ -21,9 +21,9 @@ export default function LoginForm({ baseURL }) {
   };
 
   return (
-    <>
-      <p>"Hello I am a login form</p>
+    <div>
       <>
+        <h1>Log In</h1>
         <label htmlFor="username-field"> username</label>
         <input
           id="username-field"
@@ -45,6 +45,6 @@ export default function LoginForm({ baseURL }) {
           Log in
         </button>
       </form>
-    </>
+    </div>
   );
 }
