@@ -46,6 +46,7 @@ export function storeUser(authoken, user) {
 
 const CARDFORM = [
   {
+    card_id: 1,
     color: "#008000",
     inner_message: "sample inner message",
     outer_message: "sample outer message",
