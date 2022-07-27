@@ -22,7 +22,6 @@ function App() {
       setTeam(team);
       setMessage(message);
       setImgLink(imgLink);
-      console.log(res);
     });
   }, [baseURL]);
 
@@ -45,9 +44,9 @@ function App() {
         </span>
       </> */}
 
-        <LogInForm baseURL={baseURL} />
+        {/* <LogInForm baseURL={baseURL} /> */}
 
-        {/* <AddUserForm baseURL={baseURL} /> */}
+        <AddUserForm baseURL={baseURL} />
         {/* <button onClick={(e) => setLoggedIn(true)}> Log Me In</button> */}
         {/* <UserList /> */}
       </div>

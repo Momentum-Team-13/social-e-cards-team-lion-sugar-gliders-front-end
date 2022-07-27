@@ -5,6 +5,7 @@ import { getAuthToken } from "./mockdata";
 export default function AddUserForm({ baseURL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState([]);
   // const token = localStorage.getItem("auth_token");
 
   // const displayUserNameErrors = () => {};
@@ -21,9 +22,18 @@ export default function AddUserForm({ baseURL }) {
       })
       .then((res) => console.log(res))
       .catch((res) => {
-        console.log(res);
-        let username = res.response.data.username;
-        let password = res.response.data.password;
+        let username_error = res.response.data.username;
+        let password_error = res.response.data.password;
+        if (username_error) {
+          for (let error of username_error) {
+            setError(error);
+          }
+        } else if (password_error) {
+          for (let error of password_error) {
+            setError(error);
+            console.log(error);
+          }
+        }
       });
   };
 
@@ -53,6 +63,8 @@ export default function AddUserForm({ baseURL }) {
           Add User
         </button>
       </form>
+
+      {error && <div>{error}</div>}
     </>
   );
 }

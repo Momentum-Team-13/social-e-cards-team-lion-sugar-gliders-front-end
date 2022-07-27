@@ -54,3 +54,11 @@ const CARDFORM = [
     created_by: "username",
   },
 ];
+
+const USER = [
+  {
+    name: "name",
+    username: "username",
+    email: "email",
+  },
+];

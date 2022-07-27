@@ -1,4 +1,4 @@
-import { getUsers } from "./usernames";
+import { getUsers } from "./mockdata";
 import { useState, useEffect } from "react";
 
 export function UserList({ authToken }) {
