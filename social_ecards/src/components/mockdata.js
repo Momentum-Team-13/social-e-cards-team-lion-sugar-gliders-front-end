@@ -47,7 +47,7 @@ export function storeUser(authoken, user) {
 const CARDFORM = [
   {
     card_id: 1,
-    color: "#008000",
+    color: "008000",
     inner_message: "surprise here's a secret message!",
     outer_message: "outer message for the world to see",
     image: "https://placekitten.com/200/300/",

@@ -5,7 +5,7 @@ export default function AllCards() {
   const [cardIndex, setCardIndex] = useState(0);
   const [openCard, setOpenCard] = useState(false);
 
-  //   console.log(CARDFORM);
+  console.log(CARDFORM);
   let firstCard = CARDFORM[0];
   let color = CARDFORM[0].color;
   let inner_message = CARDFORM[0].inner_message;
@@ -22,8 +22,7 @@ export default function AllCards() {
   //   );
   return (
     <>
-      <div>
-        {" "}
+      <div className={`card_${color}`}>
         <h1>USERNAME's cards</h1>
         <h2>card {cardIndex}</h2>
         <img src={image} alt="profile image" />

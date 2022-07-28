@@ -22,6 +22,7 @@ export default function LoginForm({ baseURL }) {
         localStorage.setItem("auth_token", auth_token);
       })
       .catch((res) => {
+        console.log(res);
         let error = res.response.data.non_field_errors;
         setError(error);
       });

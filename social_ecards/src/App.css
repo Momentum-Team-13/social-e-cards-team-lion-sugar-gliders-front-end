@@ -14,3 +14,8 @@ justify-content: space-around;
 .seeCard{
   border: 2px solid black;
 }
+
+.card_008000{
+  background-color: #008000;
+  border: 5px black solid;
+}
