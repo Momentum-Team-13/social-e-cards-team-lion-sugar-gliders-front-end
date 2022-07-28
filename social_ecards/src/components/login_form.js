@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
-export default function LoginForm({ baseURL }) {
+export default function LoginForm({ baseURL, setAuth, isLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
@@ -26,6 +26,7 @@ export default function LoginForm({ baseURL }) {
         setAuthToken(auth_token);
         console.log(auth_token);
         localStorage.setItem("auth_token", auth_token);
+        localStorage.setItem("username", username);
       })
       .catch((res) => {
         console.log(res);
@@ -33,6 +34,10 @@ export default function LoginForm({ baseURL }) {
         setError(error);
       });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
