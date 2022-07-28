@@ -7,6 +7,11 @@ export default function LoginForm({ baseURL }) {
   const [authToken, setAuthToken] = useState("");
   const [error, setError] = useState([]);
 
+  // const setAuth=(username, token)=>{
+  // setToken(token)
+  // setUsername(user)
+  // }
+
   const LogIn = (event) => {
     event.preventDefault();
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app

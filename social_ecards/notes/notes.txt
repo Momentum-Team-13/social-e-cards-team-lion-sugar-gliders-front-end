@@ -31,3 +31,35 @@ localStorage.setItem('highScore', highScore);
 localStorage.setItem('token', <TOKEN>)
 
 localStorage.getItem('token')
+
+const isLoggedIn = username && token
+if (! LoggedIn){
+    return <loginForm setAuth={setAuth}/>
+
+after receiving token:
+
+this happens in App.js
+const setAuth = (username, token) =>{
+    setToken(token)
+    setUsername(username)
+}
+we auth, setAuth (auth_token)
+
+const handleLogout = () =>{
+    axios.post(
+        "URL", --> url argument
+        {} --> empty object... this is for 
+        {
+            headers:{
+                authorization: `Token ${token}`
+            }
+        }
+    )
+    .then(()=>
+    setAuth('',null))
+}
+^ we have to include headers... we have to send the token when we log out and then it destroys the token
+
+- asking about why git is acting the way it is
+
+also is my way of using local storage okay
