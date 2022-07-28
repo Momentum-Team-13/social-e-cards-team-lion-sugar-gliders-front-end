@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function LoginForm({ baseURL }) {
   const [username, setUsername] = useState("");
@@ -36,7 +37,7 @@ export default function LoginForm({ baseURL }) {
   return (
     <div>
       <>
-        <h1>Log In</h1>
+        <h2>Please Log In</h2>
         <label htmlFor="username-field"> username</label>
         <input
           id="username-field"

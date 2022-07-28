@@ -60,6 +60,4 @@ const handleLogout = () =>{
 }
 ^ we have to include headers... we have to send the token when we log out and then it destroys the token
 
-- asking about why git is acting the way it is
 
-also is my way of using local storage okay

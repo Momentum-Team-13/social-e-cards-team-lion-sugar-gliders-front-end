@@ -9,6 +9,7 @@ import he from "he";
 import AllCards from "./components/allCardsPage";
 import CARDFORM from "./components/mockdata";
 import UserDataPage from "./components/userDataPage";
+import { Link, Outlet } from "react-router-dom";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,30 +30,21 @@ function App() {
   }, [baseURL]);
 
   return (
-    <>
+    <div>
+      <h1> Welcome to our page</h1>
       <div className="container">
         {team && message && imgLink && (
           <div className="from_andres">
+            <p>a note from our devs:</p>
             Hello {team}
             <p>{he.decode(message)}</p> <img src={imgLink} alt="dank meme" />{" "}
           </div>
         )}
-        {/* <>
-        <span>
-          click <a href="google.com">HERE </a> to log in |
-        </span>
-
-        <span>
-          | click <a href="./add_user_form">HERE</a> to create a username
-        </span>
-      </> */}
-
-        <LogInForm baseURL={baseURL} />
-        <AddUserForm baseURL={baseURL} />
-        <AllCards />
-        <UserDataPage />
+        <Link to="/login">Login</Link> | <Link to="/adduser">Add New User</Link>{" "}
+        | <Link to="/allcards"> See All Cards </Link>
+        <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 
