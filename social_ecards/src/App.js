@@ -8,6 +8,7 @@ import axios from "axios";
 import he from "he";
 import AllCards from "./components/allCardsPage";
 import CARDFORM from "./components/mockdata";
+import UserDataPage from "./components/userDataPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
         <LogInForm baseURL={baseURL} />
         <AddUserForm baseURL={baseURL} />
         <AllCards />
+        <UserDataPage />
       </div>
     </>
   );

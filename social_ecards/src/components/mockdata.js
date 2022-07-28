@@ -48,8 +48,8 @@ const CARDFORM = [
   {
     card_id: 1,
     color: "#008000",
-    inner_message: "sample inner message",
-    outer_message: "sample outer message",
+    inner_message: "surprise here's a secret message!",
+    outer_message: "outer message for the world to see",
     image: "https://placekitten.com/200/300/",
     created_by: "username",
   },
