@@ -1,4 +1,4 @@
-import CARDFORM from "./mockdata";
+import CARDFORM from "../mock/mockdata";
 import { useState } from "react";
 
 export default function AllCards() {

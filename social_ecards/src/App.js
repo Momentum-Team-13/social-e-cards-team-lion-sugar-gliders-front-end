@@ -2,16 +2,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import AddUserForm from "./components/add_user_form";
 import { useEffect, useState } from "react";
-import { UserList } from "./components/loginPage";
-import LogInForm from "./components/login_form.js";
+import { UserList } from "./mock/loginPage";
 import axios from "axios";
 import he from "he";
 import AllCards from "./components/allCardsPage";
-import CARDFORM from "./components/mockdata";
-import UserDataPage from "./components/userDataPage";
+import CARDFORM from "./mock/mockdata";
+import UserDataPage from "./mock/mockUserData";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
+import CreateCard from "./components/create_card";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -79,8 +79,10 @@ function App() {
         ) : (
           <Link to="login"> login </Link>
         )}
+        {/* <AddUserForm /> */}
 
         {/* <button onClick={() => Clear()}>Clear Local storage</button> */}
+        <CreateCard token={token} username={username} />
         <Outlet />
       </div>
     </div>

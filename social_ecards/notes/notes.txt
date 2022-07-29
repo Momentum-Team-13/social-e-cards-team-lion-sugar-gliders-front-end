@@ -60,4 +60,4 @@ const handleLogout = () =>{
 }
 ^ we have to include headers... we have to send the token when we log out and then it destroys the token
 
-
+want to fix: multiple messages showing when adding user instead of error/confirmation messages clearing each other out and only showing one at a time

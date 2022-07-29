@@ -68,7 +68,6 @@ export default function LoginForm({ token }) {
         </button>
       </form>
       {error && <div>{error}</div>}
-      {token && <div>You shouldn't be seeing this</div>}
     </div>
   );
 }

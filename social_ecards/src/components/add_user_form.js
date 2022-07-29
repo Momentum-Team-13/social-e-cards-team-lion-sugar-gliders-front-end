@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { getAuthToken } from "./mockdata";
+import { getAuthToken } from "../mock/mockdata";
+import { baseURL } from "../helpers/constants";
 
-export default function AddUserForm({ baseURL }) {
+export default function AddUserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
+  const [confirmation, setConfirmation] = useState([]);
   // const token = localStorage.getItem("auth_token");
 
   const AddUser = (event) => {
@@ -16,7 +18,10 @@ export default function AddUserForm({ baseURL }) {
         username: username,
         password: password,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        let confirmation = res.request.statusText;
+        setConfirmation(confirmation);
+      })
       .catch((res) => {
         let username_error = res.response.data.username;
         let password_error = res.response.data.password;
@@ -58,9 +63,10 @@ export default function AddUserForm({ baseURL }) {
           {" "}
           Add User
         </button>
+        <div>{confirmation && <div>{confirmation}</div>}</div>
       </form>
 
-      {error && <div>{error}</div>}
+      {error ? <div>{error}</div> : ""}
     </div>
   );
 }
