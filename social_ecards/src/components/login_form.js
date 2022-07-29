@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
-export default function LoginForm({ baseURL, setAuth, isLoggedIn }) {
+export default function LoginForm({ baseURL, setAuth }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
   const [error, setError] = useState([]);
 
+  const isLoggedIn = username && authToken;
   // const setAuth=(username, token)=>{
   // setToken(token)
   // setUsername(user)
@@ -22,11 +23,10 @@ export default function LoginForm({ baseURL, setAuth, isLoggedIn }) {
         password: password,
       })
       .then((res) => {
+        // console.log(res);
         let auth_token = res.data.auth_token;
         setAuthToken(auth_token);
-        console.log(auth_token);
-        localStorage.setItem("auth_token", auth_token);
-        localStorage.setItem("username", username);
+        localStorage.setItem("token", auth_token);
       })
       .catch((res) => {
         console.log(res);
@@ -47,7 +47,11 @@ export default function LoginForm({ baseURL, setAuth, isLoggedIn }) {
         <input
           id="username-field"
           type="text"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            let username = e.target.value;
+            localStorage.setItem("username", username);
+            setUsername(username);
+          }}
         />
       </>
       <form>

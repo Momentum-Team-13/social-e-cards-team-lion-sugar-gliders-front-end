@@ -9,18 +9,19 @@ import he from "he";
 import AllCards from "./components/allCardsPage";
 import CARDFORM from "./components/mockdata";
 import UserDataPage from "./components/userDataPage";
-import { Link, Outlet, Routes, Route } from "react-router-dom";
+import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
+import LoginForm from "./components/login_form.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [baseURL, setBaseURL] = useState("https://sg-ecard-api.herokuapp.com/");
-
   const [team, setTeam] = useState("");
   const [message, setMessage] = useState("");
   const [imgLink, setImgLink] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("auth_token"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [error, setError] = useState([]);
+
+  let baseURL = "https://sg-ecard-api.herokuapp.com/";
 
   const setAuth = (username, token) => {
     setToken(token);
@@ -28,13 +29,17 @@ function App() {
   };
 
   const handleLogout = () => {
+    console.log(token);
     axios
       .post(
         `${baseURL}auth/token/logout/`,
         {},
         { headers: { Authorization: `Token ${token}` } }
       )
-      .then(() => setAuth("", null))
+      .then(() => {
+        setToken(null);
+        setUsername("");
+      })
       .catch((res) => {
         let error = res.message;
         console.log(error);
@@ -42,7 +47,7 @@ function App() {
       });
   };
 
-  const isLoggedIn = username && token;
+  // const isLoggedIn = token && username;
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((res) => {
@@ -55,6 +60,10 @@ function App() {
     });
   }, [baseURL]);
 
+  // const Clear = () => {
+  //   return window.localStorage.clear();
+  // };
+
   return (
     <div>
       <h1> Welcome to our page</h1>
@@ -66,21 +75,19 @@ function App() {
             <p>{he.decode(message)}</p> <img src={imgLink} alt="dank meme" />{" "}
           </div>
         )}
-        {!isLoggedIn && (
+
+        {!loggedIn ? <LoginForm baseURL={baseURL} /> : ""}
+        <>
+          <div> Hello, you're logged in as {username}</div>
           <nav>
             <button onClick={handleLogout}> Log Out</button>
             {error && <div>{error}</div>}
           </nav>
-        )}
-        <div> Hello, you're logged in as {username}</div>
-        <Routes>
-          <Route
-            path="/login"
-            element={<LogInForm setAuth={setAuth} isLoggedIn={isLoggedIn} />}
-          />
-        </Routes>
+        </>
+
         {/* <Link to="/login">Login</Link> | <Link to="/adduser">Add New User</Link>{" "}
         | <Link to="/allcards"> See All Cards </Link> */}
+        {/* <button onClick={() => Clear()}>Clear Local storage</button> */}
         <Outlet />
       </div>
     </div>
