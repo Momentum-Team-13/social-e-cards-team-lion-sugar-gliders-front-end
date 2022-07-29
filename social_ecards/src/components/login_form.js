@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { baseURL } from "../helpers/constants";
 
-export default function LoginForm({ baseURL, setAuth }) {
+export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
@@ -36,7 +37,7 @@ export default function LoginForm({ baseURL, setAuth }) {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="allcards" />;
   }
 
   return (

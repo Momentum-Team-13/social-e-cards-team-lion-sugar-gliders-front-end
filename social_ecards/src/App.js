@@ -11,17 +11,14 @@ import CARDFORM from "./components/mockdata";
 import UserDataPage from "./components/userDataPage";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
+import { baseURL } from "./helpers/constants";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [team, setTeam] = useState("");
-  const [message, setMessage] = useState("");
-  const [imgLink, setImgLink] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [error, setError] = useState([]);
-
-  let baseURL = "https://sg-ecard-api.herokuapp.com/";
+  const [homepageMeme, setHomepageMeme] = useState(null);
 
   const setAuth = (username, token) => {
     setToken(token);
@@ -39,6 +36,7 @@ function App() {
       .then(() => {
         setToken(null);
         setUsername("");
+        localStorage.clear();
       })
       .catch((res) => {
         let error = res.message;
@@ -51,14 +49,9 @@ function App() {
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((res) => {
-      let team = res.data.team;
-      let message = res.data.description;
-      let imgLink = res.data.dank_meme_image;
-      setTeam(team);
-      setMessage(message);
-      setImgLink(imgLink);
+      setHomepageMeme(res.data);
     });
-  }, [baseURL]);
+  }, []);
 
   // const Clear = () => {
   //   return window.localStorage.clear();
@@ -68,15 +61,16 @@ function App() {
     <div>
       <h1> Welcome to our page</h1>
       <div className="container">
-        {team && message && imgLink && (
+        {homepageMeme && (
           <div className="from_andres">
             <p>a note from our devs:</p>
-            Hello {team}
-            <p>{he.decode(message)}</p> <img src={imgLink} alt="dank meme" />{" "}
+            Hello {homepageMeme.team}
+            <p>{he.decode(homepageMeme.description)}</p>{" "}
+            <img src={homepageMeme.dank_meme_image} alt="dank meme" />{" "}
           </div>
         )}
 
-        {!loggedIn ? <LoginForm baseURL={baseURL} /> : ""}
+        {!loggedIn ? <LoginForm /> : ""}
         <>
           <div> Hello, you're logged in as {username}</div>
           <nav>
