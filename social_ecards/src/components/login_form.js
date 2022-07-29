@@ -3,10 +3,9 @@ import { useState } from "react";
 import { baseURL } from "../helpers/constants";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function LoginForm({ isLoggedIn }) {
+export default function LoginForm({ token }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [authToken, setAuthToken] = useState("");
   const [error, setError] = useState([]);
 
   let navigate = useNavigate();
@@ -27,7 +26,7 @@ export default function LoginForm({ isLoggedIn }) {
       .then((res) => {
         console.log(res);
         let auth_token = res.data.auth_token;
-        setAuthToken(auth_token);
+        token = auth_token;
         localStorage.setItem("token", auth_token);
         console.log("logged in");
         navigate("/", { replace: true });
@@ -69,7 +68,7 @@ export default function LoginForm({ isLoggedIn }) {
         </button>
       </form>
       {error && <div>{error}</div>}
-      {isLoggedIn && <div> Hello</div>}
+      {token && <div>You shouldn't be seeing this</div>}
     </div>
   );
 }

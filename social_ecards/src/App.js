@@ -19,11 +19,6 @@ function App() {
   const [error, setError] = useState([]);
   const [homepageMeme, setHomepageMeme] = useState(null);
 
-  const setAuth = (username, token) => {
-    setToken(token);
-    setUsername(username);
-  };
-
   const handleLogout = () => {
     console.log(token);
     axios
@@ -34,7 +29,6 @@ function App() {
       )
       .then(() => {
         setToken(null);
-        setUsername("");
         localStorage.clear();
       })
       .catch((res) => {
@@ -43,8 +37,6 @@ function App() {
         setError(error);
       });
   };
-
-  const isLoggedIn = token && username;
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((res) => {
@@ -69,37 +61,25 @@ function App() {
           </div>
         )}
 
-        {/* {!isLoggedIn && <Link to="login"> login </Link>} */}
+        <Routes>
+          <Route path="/login" element={<LoginForm token={token} />} />
+          <Route path="/allcards" element={<AllCards token={token} />} />
+        </Routes>
 
-        {isLoggedIn && (
+        {token ? (
           <>
             <div> Hello, you're logged in as {username}</div>
             <nav>
               <button onClick={handleLogout}> Log Out</button>
               {error && <div>{error}</div>}
+              <Link to="/adduser">Add New User</Link> |{" "}
+              <Link to="/allcards"> See All Cards </Link>
             </nav>
           </>
-        )}
-
-        <Routes>
-          <Route
-            path="/login"
-            element={<LoginForm token={token} isLoggedIn={isLoggedIn} />}
-          />
-          <Route
-            path="/allcards"
-            element={<AllCards token={token} isLoggedIn={isLoggedIn} />}
-          />
-        </Routes>
-
-        {isLoggedIn ? (
-          <div>You're Logged in as {username}</div>
         ) : (
           <Link to="login"> login </Link>
         )}
 
-        {/* <Link to="/login">Login</Link> | <Link to="/adduser">Add New User</Link>{" "}
-        | <Link to="/allcards"> See All Cards </Link> */}
         {/* <button onClick={() => Clear()}>Clear Local storage</button> */}
         <Outlet />
       </div>
