@@ -13,9 +13,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="*" element={<App />}>
-        <Route path="login" element={<LoginForm />} />
+        {/* <Route path="login" element={<LoginForm />} />
         <Route path="adduser" element={<AddUserForm />} />
-        <Route path="allcards" element={<AllCards />} />
+        <Route path="allcards" element={<AllCards />} /> */}
       </Route>
     </Routes>
   </BrowserRouter>

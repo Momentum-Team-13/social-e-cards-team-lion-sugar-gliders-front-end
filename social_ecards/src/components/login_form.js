@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
 import { baseURL } from "../helpers/constants";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function LoginForm() {
+export default function LoginForm({ isLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [authToken, setAuthToken] = useState("");
   const [error, setError] = useState([]);
 
-  const isLoggedIn = username && authToken;
+  let navigate = useNavigate();
+
   // const setAuth=(username, token)=>{
   // setToken(token)
   // setUsername(user)
@@ -24,10 +25,12 @@ export default function LoginForm() {
         password: password,
       })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         let auth_token = res.data.auth_token;
         setAuthToken(auth_token);
         localStorage.setItem("token", auth_token);
+        console.log("logged in");
+        navigate("/", { replace: true });
       })
       .catch((res) => {
         console.log(res);
@@ -35,10 +38,6 @@ export default function LoginForm() {
         setError(error);
       });
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="allcards" />;
-  }
 
   return (
     <div>
@@ -70,6 +69,7 @@ export default function LoginForm() {
         </button>
       </form>
       {error && <div>{error}</div>}
+      {isLoggedIn && <div> Hello</div>}
     </div>
   );
 }
