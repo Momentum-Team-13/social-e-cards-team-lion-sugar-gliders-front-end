@@ -2,7 +2,7 @@ import './Appallusers.css';
 import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import Cards from './Components/Cardscomponent'
+import ShowCards from './Components/Cardscomponent'
 import {listCards} from './data.js';
 import Slider from 'react-slick';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
@@ -14,21 +14,6 @@ function App() {
     useEffect(()=>{
         setCurrentCard(listCards[currentCardIndex])
     })
-
-return(
-    <>
-        <div className=''>
-            <Cards currentCard={currentCard}/>
-        </div>
-        </>
-    )
-}
-
-
-
-function Cards() {
-    
-    const [expanded, setExpanded] = useState(false);
     const settings = {
         dots: true,
         infinite: true,
@@ -38,17 +23,29 @@ function Cards() {
         initialSlide: 0,
         adaptiveHeight: true,
         rows: 2,
-        
-    
-        
-    }
-    
-    
+    };
+    return(
+        <>
+        <div className=''>
+            
+            {/* <div> {listCards.map((item, idx) => (<Cards item={item} key={idx}/>))} </div> */}
+            <Cards currentCard={currentCard}/>
+        </div>
+        </>
+    )
+}
+
+
+
+function Cards(currentCard) {
+    const [expanded, setExpanded] = useState(false);
+
+
+
     return (
         <div className="container">
-            <Slider {...settings}>
-            {listCards.map((currentCard) => {
-                return(
+            {/* <Slider {...settings}> */}
+                
                 <div className="card">
                     <div className="card-top">
                         <img src={currentCard.coverImageUrl}/>
@@ -61,18 +58,18 @@ function Cards() {
                                 <button2>User-link</button2> 
                             </Link>
                         </div>
-                        </Router>
+                    </Router>
                     
 
                     {/* <a href='https://www.pinterest.com/search/pins/?q=hayao%20miyazaki&rs=typed&term_meta[]=hayao%7Ctyped&term_meta[]=miyazaki%7Ctyped'>
                     <button2>👤</button2>
-                </a> */}
-                
+                    </a> */}
+                    <br/>
                     
-                    <div>
+                        
                     {expanded
                     ? <button onClick={() => setExpanded ( !expanded)}>Show less</button>
-                    : <button onClick={() => setExpanded ( !expanded)}> Show more</button>}</div>
+                    : <button onClick={() => setExpanded ( !expanded)}> Show more</button>}
                     {expanded &&
 
                     <div className="more">
@@ -81,8 +78,7 @@ function Cards() {
                     </div>}
                     
                 </div>
-                )
-            })}
+                
             </Slider>
         </div>
     )
@@ -90,7 +86,3 @@ function Cards() {
 
 
 export default App;
-
-
-
-
