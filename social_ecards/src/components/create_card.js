@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
-import TimezoneSelect from "react-timezone-select";
+import image from "../helpers/angery.png";
+import { timestamp } from "../helpers/constants";
 
 export default function CreateCard({ token, username }) {
   const [innerMessage, setInnerMessage] = useState("");
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
   const [cardImage, setCardImage] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(null);
   const [error, setError] = useState("");
+  const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
+
   console.log(token);
+  console.log(username);
 
   let cardOwner = localStorage.getItem("username");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    useEffect = () => {
+      setTime(timestamp);
+    };
+    console.log(timestamp);
+  };
 
   const CallInCard = () => {
     axios
@@ -36,7 +48,7 @@ export default function CreateCard({ token, username }) {
   return (
     <>
       <div>Create a Card!</div>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="inner-message">Inner Message</label>
           <input
@@ -50,15 +62,21 @@ export default function CreateCard({ token, username }) {
             type="text"
             onChange={(e) => setOuterMessage(e.target.value)}
           />
+          <img alt="card-decoration" src={image} /> Here's your card decoration
+          <img alt="card-decoration" src={imgSrc} /> Here's a place kitten
           <label> from:</label>
-          <select onChange={(e) => console.log(e)} value="From">
+          <select onChange={(e) => console.log(e)} id="from">
             <option value={cardOwner}>{cardOwner} </option>
-            <option>Hello</option>
+            <option>Anonymous</option>
           </select>
         </div>
         <button onClick={() => CallInCard()}>Add Card</button>
         <button> Add to Drafts</button>
-        {error && <div>{error}</div>}
+        {error && (
+          <div>
+            {error} @ {timestamp}
+          </div>
+        )}
       </form>
     </>
   );

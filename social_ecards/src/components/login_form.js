@@ -7,6 +7,7 @@ export default function LoginForm({ token }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   let navigate = useNavigate();
 
@@ -29,6 +30,7 @@ export default function LoginForm({ token }) {
         token = auth_token;
         localStorage.setItem("token", auth_token);
         console.log("logged in");
+        setLoggedIn(true);
         navigate("/", { replace: true });
       })
       .catch((res) => {

@@ -20,7 +20,7 @@ function App() {
   const [homepageMeme, setHomepageMeme] = useState(null);
 
   const handleLogout = () => {
-    console.log(token);
+    // console.log(token);
     axios
       .post(
         `${baseURL}auth/token/logout/`,

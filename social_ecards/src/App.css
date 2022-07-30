@@ -19,3 +19,7 @@ justify-content: space-around;
   background-color: #008000;
   border: 5px black solid;
 }
+
+img{
+  width: 200px;
+}
