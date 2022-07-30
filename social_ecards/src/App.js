@@ -12,6 +12,7 @@ import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
 import CreateCard from "./components/create_card";
+import SeeUser from "./components/see_user_page";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -64,6 +65,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginForm token={token} />} />
           <Route path="/allcards" element={<AllCards token={token} />} />
+          <Route
+            path="/seeuser"
+            element={<SeeUser token={token} username={username} />}
+          />
         </Routes>
 
         {token ? (
@@ -74,6 +79,7 @@ function App() {
               {error && <div>{error}</div>}
               <Link to="/adduser">Add New User</Link> |{" "}
               <Link to="/allcards"> See All Cards </Link>
+              <Link to="/seeuser"> Go to {username}'s page</Link>
             </nav>
           </>
         ) : (

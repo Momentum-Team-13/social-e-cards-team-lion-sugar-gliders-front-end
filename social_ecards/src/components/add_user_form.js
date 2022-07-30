@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { getAuthToken } from "../mock/mockdata";
 import { baseURL } from "../helpers/constants";
 
 export default function AddUserForm() {
@@ -42,7 +41,7 @@ export default function AddUserForm() {
     <div className="add_user">
       <h1> Add User</h1>
 
-      <form onSubmit={getAuthToken}>
+      <form onSubmit={console.log("form submitted")}>
         <div>
           <label htmlFor="username-field"> username</label>
           <input
