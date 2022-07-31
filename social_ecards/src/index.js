@@ -6,7 +6,6 @@ import LoginForm from "./components/login_form";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddUserForm from "./components/add_user_form";
-import AllCards from "./components/allCardsPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

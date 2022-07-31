@@ -11,6 +11,7 @@ export default function CreateCard({ token, username }) {
   const [time, setTime] = useState(null);
   const [error, setError] = useState("");
   const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
+  const [statusMessage, setStatusMessage] = useState("");
 
   console.log(token);
   console.log(username);
@@ -48,7 +49,10 @@ export default function CreateCard({ token, username }) {
           headers: { Authorization: `Token ${token}` },
         }
       )
-      .then((res) => console.log(res))
+      .then((res) => {
+        let statusMessage = res.request.statusText;
+        setStatusMessage(statusMessage);
+      })
       .catch((res) => {
         let detail_error = res.response.data.detail;
         if (detail_error) {
@@ -103,6 +107,7 @@ export default function CreateCard({ token, username }) {
         <br />
         <button onClick={() => CallInCard()}>Add Card</button>
         <button> Add to Drafts</button>
+        {statusMessage && <div>Your card has been {statusMessage}</div>}
         {error && (
           <div>
             {error} @ {timestamp}

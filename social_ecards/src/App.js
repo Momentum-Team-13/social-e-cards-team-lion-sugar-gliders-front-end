@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { UserList } from "./mock/loginPage";
 import axios from "axios";
 import he from "he";
-import AllCards from "./components/allCardsPage";
+import AllCards from "./components/user_cards";
 import CARDFORM from "./mock/mockdata";
 import UserDataPage from "./mock/mockUserData";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
@@ -45,10 +45,6 @@ function App() {
     });
   }, []);
 
-  // const Clear = () => {
-  //   return window.localStorage.clear();
-  // };
-
   return (
     <div>
       <h1> Welcome to our page</h1>
@@ -62,33 +58,36 @@ function App() {
           </div>
         )}
 
-        <Routes>
-          <Route path="/login" element={<LoginForm token={token} />} />
-          <Route path="/allcards" element={<AllCards token={token} />} />
-          <Route
-            path="/seeuser"
-            element={<SeeUser token={token} username={username} />}
-          />
-          <Route
-            path="/createcard"
-            element={<CreateCard token={token} username={username} />}
-          />
-        </Routes>
-
         {token ? (
           <>
-            <div> Hello, you're logged in as {username}</div>
+            <Routes>
+              <Route path="/login" element={<LoginForm token={token} />} />
+            </Routes>
+            <Routes>
+              <Route
+                path="/allcards"
+                element={<AllCards token={token} username={username} />}
+              />
+              <Route
+                path="/seeuser"
+                element={<SeeUser token={token} username={username} />}
+              />
+              <Route
+                path="/createcard"
+                element={<CreateCard token={token} username={username} />}
+              />
+            </Routes>
             <nav>
+              <div> Hello, you're logged in as {username}</div>
               <button onClick={handleLogout}> Log Out</button>
               {error && <div>{error}</div>}
-              <Link to="/adduser">Add New User</Link> |{" "}
-              <Link to="/allcards" onClick={(e) => console.log(e)}>
-                {" "}
-                See All Cards{" "}
-              </Link>{" "}
-              |<Link to="/seeuser"> Go to {username}'s page</Link> |
-              <Link to="createcard"> Create a card</Link> |
-              <Link to="/">Back to homepage</Link> |
+              <div>
+                <Link to="/adduser">Add New User</Link> |{" "}
+                <Link to="/allcards">See All Cards </Link> |
+                <Link to="/seeuser"> Go to {username}'s page</Link> |
+                <Link to="createcard"> Create a card</Link> |
+                <Link to="/">Back to homepage</Link> |
+              </div>
             </nav>
           </>
         ) : (

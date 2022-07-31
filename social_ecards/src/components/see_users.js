@@ -1,15 +1,19 @@
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function SeeUser({ token, username }) {
+  const [userInfo, setUserInfo] = useState(null);
+
   const getUserInfo = () => {
-    console.log(`line 17 ${token}`);
     axios
       .get(`${baseURL}auth/users/me/`, {
         headers: { Authorization: `Token ${token}` },
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        setUserInfo(res.data);
+        console.log(res);
+      })
       .catch((res) => console.log(res));
   };
 
@@ -26,9 +30,14 @@ export default function SeeUser({ token, username }) {
 
   return (
     <>
-      <div>See {username}'s Profile</div>
-      <h1>{username}</h1>
       <div onClick={(e) => getUserInfo(e)}> click to get user info</div>
+      {userInfo && (
+        <div>
+          <h1>{userInfo.username}'s page</h1>
+          <div>Email is: {userInfo.email}</div>
+          <div>User Id Number: {userInfo.id}</div>
+        </div>
+      )}
       <h3>people following {username}</h3>
       <div onClick={(e) => seeFollowers(e)}> click to see follower list</div>
     </>

@@ -1,4 +1,4 @@
-import CARDFORM from "../mock/mockdata";
+import CARDFORM from "./mockdata";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
