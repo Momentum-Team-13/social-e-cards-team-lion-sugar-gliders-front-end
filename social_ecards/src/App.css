@@ -18,6 +18,13 @@ display: inline-flex;
   border: 5px black solid;
 }
 
+.card{
+  display:inline-flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin: 5px;
+}
+
 img{
   width: 200px;
 }

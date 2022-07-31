@@ -1,7 +1,7 @@
 https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/blob/main/api.docs.md
 
 Create User
-[x]
+[x] --> add email field to add user form?
 Login
 [x]
 Logout
@@ -26,3 +26,6 @@ View Selected Cards
 []
 Edit/Delete Selected Cards
 []
+
+- ask about how to set variables during map
+- reformat the way timestamps appear
