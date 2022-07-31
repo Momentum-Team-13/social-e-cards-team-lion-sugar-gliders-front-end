@@ -1,18 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
-import AddUserForm from "./components/add_user_form";
 import { useEffect, useState } from "react";
-import { UserList } from "./mock/loginPage";
 import axios from "axios";
 import he from "he";
 import AllCards from "./components/user_cards";
-import CARDFORM from "./mock/mockdata";
-import UserDataPage from "./mock/mockUserData";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
 import CreateCard from "./components/create_card";
-import SeeUser from "./components/see_users";
+import SeeProfile from "./components/see_profile";
+import AddUserForm from "./components/add_user_form";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -64,13 +60,14 @@ function App() {
               <Route path="/login" element={<LoginForm token={token} />} />
             </Routes>
             <Routes>
+              <Route path="/adduser" element={<AddUserForm />} />
               <Route
                 path="/allcards"
                 element={<AllCards token={token} username={username} />}
               />
               <Route
-                path="/seeuser"
-                element={<SeeUser token={token} username={username} />}
+                path="/seeprofile"
+                element={<SeeProfile token={token} username={username} />}
               />
               <Route
                 path="/createcard"
@@ -84,7 +81,7 @@ function App() {
               <div>
                 <Link to="/adduser">Add New User</Link> |{" "}
                 <Link to="/allcards">See All Cards </Link> |
-                <Link to="/seeuser"> Go to {username}'s page</Link> |
+                <Link to="/seeprofile"> See Your Profile Page</Link> |
                 <Link to="createcard"> Create a card</Link> |
                 <Link to="/">Back to homepage</Link> |
               </div>
@@ -93,9 +90,6 @@ function App() {
         ) : (
           <Link to="login"> login </Link>
         )}
-        {/* <AddUserForm /> */}
-
-        {/* <button onClick={() => Clear()}>Clear Local storage</button> */}
 
         <Outlet />
       </div>

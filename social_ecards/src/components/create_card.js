@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
-import image from "../helpers/angery.png";
-import { timestamp } from "../helpers/constants";
 
 export default function CreateCard({ token, username }) {
   const [innerMessage, setInnerMessage] = useState("");
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
-  const [time, setTime] = useState(null);
   const [error, setError] = useState("");
   const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
   const [statusMessage, setStatusMessage] = useState("");
@@ -18,22 +15,9 @@ export default function CreateCard({ token, username }) {
 
   let cardOwner = localStorage.getItem("username");
 
-  const handlePhotoSelection = (e) => {
-    let photoChoice = e.target.innerText;
-    if (photoChoice === "here's this") {
-      setImgSrc({ image });
-    }
-    if (photoChoice === "choose kitten") {
-      setImgSrc(imgSrc);
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    useEffect = () => {
-      setTime(timestamp);
-    };
-    console.log(timestamp);
+    setImgSrc(imgSrc);
   };
 
   const CallInCard = () => {
@@ -83,12 +67,7 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-          <img alt="card-decoration" src={image} /> Here's your card decoration{" "}
-          <button onClick={(e) => handlePhotoSelection(e)}>here's this </button>
-          <img alt="card-decoration" src={imgSrc} /> Here's a place kitten
-          <button onClick={(e) => handlePhotoSelection(e)}>
-            choose kitten
-          </button>
+          <img alt="card-decoration" src={imgSrc} />
         </div>
         <div>
           <label> This card is from:</label>
@@ -108,11 +87,7 @@ export default function CreateCard({ token, username }) {
         <button onClick={() => CallInCard()}>Add Card</button>
         <button> Add to Drafts</button>
         {statusMessage && <div>Your card has been {statusMessage}</div>}
-        {error && (
-          <div>
-            {error} @ {timestamp}
-          </div>
-        )}
+        {error && <div>{error}</div>}
       </form>
     </div>
   );

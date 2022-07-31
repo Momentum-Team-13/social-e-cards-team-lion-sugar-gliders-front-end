@@ -14,7 +14,8 @@ export default function AllCards({ token, username }) {
         console.log(res.data);
         const CARDS = res.data;
         setCardData(CARDS);
-      });
+      })
+      .catch((res) => console.log(res));
   };
 
   return (

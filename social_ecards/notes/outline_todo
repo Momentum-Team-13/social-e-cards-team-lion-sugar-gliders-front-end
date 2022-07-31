@@ -1,11 +1,13 @@
 https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/blob/main/api.docs.md
 
 Create User
-[]
+[x]
 Login
-[]
+[x]
 Logout
-[]
+[x]
+Get Profile Details
+[x]
 Get User Details
 []
 Follow a user
@@ -15,11 +17,11 @@ Get All Followers
 Remove User from following list
 []
 View All Cards
-[]
+[/]
 Create  Card
-[]
+[x]
 View My Cards
-[]
+[/]
 View Selected Cards
 []
 Edit/Delete Selected Cards
