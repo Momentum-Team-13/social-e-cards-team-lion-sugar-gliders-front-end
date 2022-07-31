@@ -12,7 +12,7 @@ import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
 import CreateCard from "./components/create_card";
-import SeeUser from "./components/see_user_page";
+import SeeUser from "./components/see_users";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -69,6 +69,10 @@ function App() {
             path="/seeuser"
             element={<SeeUser token={token} username={username} />}
           />
+          <Route
+            path="/createcard"
+            element={<CreateCard token={token} username={username} />}
+          />
         </Routes>
 
         {token ? (
@@ -78,8 +82,13 @@ function App() {
               <button onClick={handleLogout}> Log Out</button>
               {error && <div>{error}</div>}
               <Link to="/adduser">Add New User</Link> |{" "}
-              <Link to="/allcards"> See All Cards </Link>
-              <Link to="/seeuser"> Go to {username}'s page</Link>
+              <Link to="/allcards" onClick={(e) => console.log(e)}>
+                {" "}
+                See All Cards{" "}
+              </Link>{" "}
+              |<Link to="/seeuser"> Go to {username}'s page</Link> |
+              <Link to="createcard"> Create a card</Link> |
+              <Link to="/">Back to homepage</Link> |
             </nav>
           </>
         ) : (
@@ -88,7 +97,7 @@ function App() {
         {/* <AddUserForm /> */}
 
         {/* <button onClick={() => Clear()}>Clear Local storage</button> */}
-        <CreateCard token={token} username={username} />
+
         <Outlet />
       </div>
     </div>

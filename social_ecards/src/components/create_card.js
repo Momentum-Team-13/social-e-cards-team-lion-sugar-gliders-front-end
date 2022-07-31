@@ -39,9 +39,13 @@ export default function CreateCard({ token, username }) {
     axios
       .post(
         `${baseURL}ecards/`,
-        {},
         {
-          headers: { Authorization: `Token: ${token}` },
+          card_inner_message: innerMessage,
+          card_outer_message: outerMessage,
+          card_image: imgSrc,
+        },
+        {
+          headers: { Authorization: `Token ${token}` },
         }
       )
       .then((res) => console.log(res))
@@ -87,6 +91,13 @@ export default function CreateCard({ token, username }) {
           <select onChange={(e) => console.log(e)} id="from">
             <option value={cardOwner}>{cardOwner} </option>
             <option>Anonymous</option>
+          </select>
+        </div>
+        <div>
+          <label>This card is for:</label>
+          <select>
+            {" "}
+            <option>followers</option>
           </select>
         </div>
         <br />

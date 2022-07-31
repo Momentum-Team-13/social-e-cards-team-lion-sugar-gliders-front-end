@@ -1,5 +1,6 @@
 import CARDFORM from "../mock/mockdata";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function AllCards() {
   const [cardIndex, setCardIndex] = useState(0);
@@ -12,6 +13,7 @@ export default function AllCards() {
   let outer_message = CARDFORM[0].outer_message;
   let image = CARDFORM[0].image;
   let created_by = CARDFORM[0].created_by;
+
   //   console.log(
   //     firstCard,
   //     color,

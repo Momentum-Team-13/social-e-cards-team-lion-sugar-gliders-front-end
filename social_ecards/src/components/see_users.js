@@ -4,12 +4,11 @@ import { useEffect } from "react";
 
 export default function SeeUser({ token, username }) {
   const getUserInfo = () => {
+    console.log(`line 17 ${token}`);
     axios
-      .get(
-        `${baseURL}auth/users/me/`,
-        {},
-        { headers: { Authorization: `Token ${token}` } }
-      )
+      .get(`${baseURL}auth/users/me/`, {
+        headers: { Authorization: `Token ${token}` },
+      })
       .then((res) => console.log(res))
       .catch((res) => console.log(res));
   };
