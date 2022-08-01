@@ -25,7 +25,7 @@ export default function AllCards({ token, username }) {
 
   return (
     <div>
-      <h1>See all of {username}'s cards</h1>
+      <h1>See all cards</h1>
       <div>
         <Index username={username} totalCards={totalCards} />
         <CardList token={token} />
@@ -92,10 +92,10 @@ const CardList = ({ token }) => {
             >
               Card Owner: {card.card_owner.username}
             </p>
-
             <img src={card.card_image} alt="place kitten card cover" />
+            {/* could/should I include a default card image if no image */}
 
-            <div onClick={(e) => handleCardSelect({ card })}>See/Edit Card</div>
+            <div onClick={(e) => handleCardSelect({ card })}>See Card</div>
           </div>
         ))}
         {/* <Link to={`/specificcard${cardID}`} /> */}

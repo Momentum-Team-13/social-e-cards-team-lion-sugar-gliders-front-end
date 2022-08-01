@@ -60,7 +60,10 @@ function App() {
         {token ? (
           <>
             <Routes>
-              <Route path="/login" element={<LoginForm />} />
+              <Route
+                path="/login"
+                element={<LoginForm setToken={setToken} />}
+              />
               <Route path="/adduser" element={<AddUserForm />} />
               <Route
                 path="/allcards/*"
@@ -98,7 +101,7 @@ function App() {
             </nav>
           </>
         ) : (
-          <LoginForm />
+          <LoginForm setToken={setToken} />
         )}
 
         <Outlet />

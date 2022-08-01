@@ -4,7 +4,7 @@ import { baseURL } from "../helpers/constants";
 import { useNavigate, Link, Routes, Route } from "react-router-dom";
 import AddUserForm from "./add_user_form";
 
-export default function LoginForm({ token }) {
+export default function LoginForm({ token, setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
@@ -33,7 +33,8 @@ export default function LoginForm({ token }) {
         localStorage.setItem("token", auth_token);
         console.log("logged in");
         setLoggedIn(true);
-        navigate("/", { replace: true });
+        setToken(token);
+        // navigate("/", { replace: true });
       })
       .catch((res) => {
         console.log(res);
