@@ -57,3 +57,6 @@ img{
 .individual_follower{
   border: 2px solid black;
 }
+
+.navbar{display:flex;
+flex-direction:row;}

@@ -7,6 +7,7 @@ export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
 
+
   // useEffect = () => {
   axios
     .get(`${baseURL}ecards/`, {
@@ -28,7 +29,7 @@ export default function AllCards({ token, username }) {
       <h1>See all cards</h1>
       <div>
         <Index username={username} totalCards={totalCards} />
-        <CardList token={token} />
+        <CardList token={token} username={username} />
       </div>
       <div></div>
     </div>
@@ -45,11 +46,13 @@ const Index = ({ username, totalCards }) => {
   );
 };
 
-const CardList = ({ token }) => {
+const CardList = ({ token, username }) => {
   const [cardData, setCardData] = useState([]);
   const [cardIndex, setCardIndex] = useState(0);
   const navigate = useNavigate();
   const [detailPractice, setDetailPractice] = useState(false);
+  const [canEdit, setCanEdit] = useState(false);
+  const [cardOwner, setCardOwner] = useState("");
 
   axios
     .get(`${baseURL}ecards/`, {
@@ -59,11 +62,18 @@ const CardList = ({ token }) => {
       const CARDS = res.data;
       setCardData(CARDS);
       CARDS.map((card) => {
+        setCardOwner(card.card_owner.username);
         const cardID = cardData.id;
         return cardID;
       });
     }, [])
     .catch((res) => console.log(res));
+
+  // useEffect = () => {
+  //   if ({ username } === cardOwner) {
+  //     return <button>Edit Card</button>;
+  //   }
+  // };
 
   const handleCardSelect = ({ card }) => {
     // const { cardID } = useParams;

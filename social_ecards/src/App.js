@@ -44,21 +44,38 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1> Welcome to our page</h1>
-      <div className="container">
-        {homepageMeme && (
-          <div className="from_andres">
-            <p>a note from our devs:</p>
-            Hello {homepageMeme.team}
-            <p>{he.decode(homepageMeme.description)}</p>{" "}
-            <img src={homepageMeme.dank_meme_image} alt="dank meme" />{" "}
-          </div>
-        )}
+    <div className="entirety">
+      <div>
+        <h1> Welcome to our page</h1>
+        <div className="container">
+          {homepageMeme && (
+            <div className="from_andres">
+              <p>a note from our devs:</p>
+              Hello {homepageMeme.team}
+              <p>{he.decode(homepageMeme.description)}</p>{" "}
+              <img src={homepageMeme.dank_meme_image} alt="dank meme" />{" "}
+            </div>
+          )}
+        </div>
         {/* <LoginForm /> */}
 
         {token ? (
           <>
+            <div className="navbar">
+              <nav>
+                <div> Hello, you're logged in as {username}</div>
+                <button onClick={handleLogout}> Log Out</button>
+                {error && <div>{error}</div>}
+                <div>
+                  {/* <Link to="/adduser">Add New User</Link> |{" "} */}
+                  <Link to="/allcards">See All Cards </Link> |
+                  <Link to="/seeprofile"> See Your Profile Page</Link> |
+                  <Link to="/createcard"> Create a card</Link> |
+                  <Link to="/allusers"> See All Users</Link> |
+                  <Link to="/">Back to homepage</Link> |
+                </div>
+              </nav>
+            </div>
             <Routes>
               <Route
                 path="/login"
@@ -70,13 +87,17 @@ function App() {
                 element={<AllCards token={token} username={username} />}
               />
               <Route
-                path="/seeprofile"
+                path="/seeprofile/"
                 element={<SeeProfile token={token} username={username} />}
               />
               <Route
                 path="/createcard"
                 element={<CreateCard token={token} username={username} />}
               />
+              {/* <Route
+                path="/editcard"
+                element={<EditCard token={token}/>}
+              /> */}
               <Route
                 path="/allusers"
                 element={<AllUsers token={token} username={username} />}
@@ -86,19 +107,6 @@ function App() {
                 element={<SpecificCard token={token} />}
               />
             </Routes>
-            <nav>
-              <div> Hello, you're logged in as {username}</div>
-              <button onClick={handleLogout}> Log Out</button>
-              {error && <div>{error}</div>}
-              <div>
-                {/* <Link to="/adduser">Add New User</Link> |{" "} */}
-                <Link to="/allcards">See All Cards </Link> |
-                <Link to="/seeprofile"> See Your Profile Page</Link> |
-                <Link to="/createcard"> Create a card</Link> |
-                <Link to="/allusers"> See All Users</Link> |
-                <Link to="/">Back to homepage</Link> |
-              </div>
-            </nav>
           </>
         ) : (
           <LoginForm setToken={setToken} />

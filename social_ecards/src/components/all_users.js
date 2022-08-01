@@ -7,26 +7,45 @@ export default function AllUsers({ token, username }) {
   const [userID, setUserID] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [userFollowingData, setUserFollowingData] = useState([]);
+
+  // useEffect = () => {
+  console.log("hello");
+
+  // };
+
+  return (
+    <UserData
+      token={token}
+      setUserID={setUserID}
+      setUserFollowingData={setUserFollowingData}
+    />
+  );
+}
+
+const UserData = ({ token, setUserID, setUserFollowingData }) => {
+  const [userInfo, setUserInfo] = useState([]);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [following, setFollowing] = useState(false);
+
   axios
     .get(`${baseURL}users/`, {
       headers: { Authorization: `Token ${token}` },
     })
     .then((res) => {
       const users = res.data;
-      setUserData(users);
+      setUserInfo(users);
     }, []);
 
-  const handleFollow = (props) => {
+  const HandleFollow = (props) => {
+    setFollowing(true);
     let intPK = props;
     console.log(intPK);
     setUserID(intPK);
 
-    // useEffect = () => {
-    console.log("hello");
     axios
       .post(
         `${baseURL}followers/`,
-        { following: userID },
+        { following: intPK },
         {
           headers: { Authorization: `Token ${token}` },
         }
@@ -37,26 +56,27 @@ export default function AllUsers({ token, username }) {
       })
       .catch((res) => console.log(res));
   };
-  console.log();
-  // };
-
   return (
     <div>
       <h1>See All Users</h1>
-      {userData.map((user) => (
+      {userInfo.map((user) => (
         <div className="username" key={user.username}>
           <strong>Username: </strong>
-          <div
-            key={user.id}
-            id={user.id}
-            onClick={(e) => handleFollow(e.target.id)}
-          >
-            {" "}
-            {user.username}
-          </div>{" "}
+          <div> {user.username}</div>{" "}
+          {!following ? (
+            <button
+              key={user.id}
+              id={user.id}
+              onClick={(e) => HandleFollow(e.target.id)}
+            >
+              follow user
+            </button>
+          ) : (
+            "You Follow this user"
+          )}
         </div>
       ))}
       {statusMessage && <div>{statusMessage}</div>}
     </div>
   );
-}
+};
