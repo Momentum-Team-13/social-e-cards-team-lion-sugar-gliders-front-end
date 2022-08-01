@@ -2,20 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import LoginForm from "./components/login_form";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddUserForm from "./components/add_user_form";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="*" element={<App />}>
-        {/* <Route path="login" element={<LoginForm />} />
-        <Route path="adduser" element={<AddUserForm />} />
-        <Route path="allcards" element={<AllCards />} /> */}
-      </Route>
+      <Route path="*" element={<App />}></Route>
     </Routes>
   </BrowserRouter>
 );

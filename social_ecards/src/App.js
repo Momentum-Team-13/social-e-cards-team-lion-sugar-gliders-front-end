@@ -9,6 +9,8 @@ import { baseURL } from "./helpers/constants";
 import CreateCard from "./components/create_card";
 import SeeProfile from "./components/see_profile";
 import AddUserForm from "./components/add_user_form";
+import AllUsers from "./components/all_users";
+import SpecificCard from "./components/specific_card";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -53,16 +55,17 @@ function App() {
             <img src={homepageMeme.dank_meme_image} alt="dank meme" />{" "}
           </div>
         )}
+        {/* <LoginForm /> */}
 
         {token ? (
           <>
             <Routes>
-              <Route path="/login" element={<LoginForm token={token} />} />
+              <Route path="/login" element={<LoginForm />} />
             </Routes>
             <Routes>
               <Route path="/adduser" element={<AddUserForm />} />
               <Route
-                path="/allcards"
+                path="/allcards/*"
                 element={<AllCards token={token} username={username} />}
               />
               <Route
@@ -73,6 +76,11 @@ function App() {
                 path="/createcard"
                 element={<CreateCard token={token} username={username} />}
               />
+              <Route
+                path="/allusers"
+                element={<AllUsers token={token} username={username} />}
+              />
+              <Route path="/specificcard/" element={<SpecificCard />} />
             </Routes>
             <nav>
               <div> Hello, you're logged in as {username}</div>
@@ -82,13 +90,14 @@ function App() {
                 <Link to="/adduser">Add New User</Link> |{" "}
                 <Link to="/allcards">See All Cards </Link> |
                 <Link to="/seeprofile"> See Your Profile Page</Link> |
-                <Link to="createcard"> Create a card</Link> |
+                <Link to="/createcard"> Create a card</Link> |
+                <Link to="/allusers"> See All Users</Link> |
                 <Link to="/">Back to homepage</Link> |
               </div>
             </nav>
           </>
         ) : (
-          <Link to="login"> login </Link>
+          <Link to="/login"> login </Link>
         )}
 
         <Outlet />

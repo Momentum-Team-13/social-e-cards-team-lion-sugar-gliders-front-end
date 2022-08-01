@@ -3,7 +3,7 @@ https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/bl
 Create User
 [x] --> add email field to add user form?
 Login
-[x]
+[x] --> fix login form not showing?
 Logout
 [x]
 Get Profile Details
@@ -29,3 +29,5 @@ Edit/Delete Selected Cards
 
 - ask about how to set variables during map
 - reformat the way timestamps appear
+-how to see another users information if the only cards that are showing are cards that I've left
+- pass params through useNavigate
