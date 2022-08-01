@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { baseURL } from "../helpers/constants";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Routes, Route } from "react-router-dom";
+import AddUserForm from "./add_user_form";
 
 export default function LoginForm({ token }) {
   const [username, setUsername] = useState("");
@@ -42,6 +43,9 @@ export default function LoginForm({ token }) {
 
   return (
     <div>
+      <Routes>
+        <Route path="/adduser" element={<AddUserForm />} />
+      </Routes>
       <>
         <h2>Please Log In</h2>
         <label htmlFor="username-field"> username</label>
@@ -70,6 +74,8 @@ export default function LoginForm({ token }) {
         </button>
       </form>
       {error && <div>{error}</div>}
+      Need to create a user?
+      <Link to="/adduser">Add New User</Link> |{" "}
     </div>
   );
 }

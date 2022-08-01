@@ -61,8 +61,6 @@ function App() {
           <>
             <Routes>
               <Route path="/login" element={<LoginForm />} />
-            </Routes>
-            <Routes>
               <Route path="/adduser" element={<AddUserForm />} />
               <Route
                 path="/allcards/*"
@@ -87,7 +85,7 @@ function App() {
               <button onClick={handleLogout}> Log Out</button>
               {error && <div>{error}</div>}
               <div>
-                <Link to="/adduser">Add New User</Link> |{" "}
+                {/* <Link to="/adduser">Add New User</Link> |{" "} */}
                 <Link to="/allcards">See All Cards </Link> |
                 <Link to="/seeprofile"> See Your Profile Page</Link> |
                 <Link to="/createcard"> Create a card</Link> |
@@ -97,7 +95,7 @@ function App() {
             </nav>
           </>
         ) : (
-          <Link to="/login"> login </Link>
+          <LoginForm />
         )}
 
         <Outlet />
