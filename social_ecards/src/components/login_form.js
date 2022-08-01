@@ -27,11 +27,9 @@ export default function LoginForm({ token, setToken }) {
         password: password,
       })
       .then((res) => {
-        console.log(res);
         let auth_token = res.data.auth_token;
         token = auth_token;
         localStorage.setItem("token", auth_token);
-        console.log("logged in");
         setLoggedIn(true);
         setToken(token);
         // navigate("/", { replace: true });
