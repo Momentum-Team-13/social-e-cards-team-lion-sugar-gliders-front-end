@@ -31,3 +31,6 @@ Edit/Delete Selected Cards
 - reformat the way timestamps appear
 -how to see another users information if the only cards that are showing are cards that I've left
 - pass params through useNavigate
+
+- is there a place where i add an "are you sure" to catch the data... it seems that if i click "follow user" i automatically follow them
+

@@ -78,7 +78,10 @@ function App() {
                 path="/allusers"
                 element={<AllUsers token={token} username={username} />}
               />
-              <Route path="/specificcard/:cardID" element={<SpecificCard />} />
+              <Route
+                path="/specificcard/:cardID"
+                element={<SpecificCard token={token} />}
+              />
             </Routes>
             <nav>
               <div> Hello, you're logged in as {username}</div>

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
-import SpecificCard from "./specific_card";
 
 export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
@@ -63,11 +62,11 @@ const CardList = ({ token }) => {
         const cardID = cardData.id;
         return cardID;
       });
-      // console.log(res);
     }, [])
     .catch((res) => console.log(res));
 
   const handleCardSelect = ({ card }) => {
+    // const { cardID } = useParams;
     let cardID = card.id;
     console.log(cardID);
     setCardIndex(cardID);
@@ -87,24 +86,19 @@ const CardList = ({ token }) => {
             <h2>{card.card_inner_message}</h2>
             <p>Card created at: {card.created_at}</p>
             <p>Card updated at: {card.updated_at}</p>
+            <p
+              id={card.card_owner.id}
+              onClick={(e) => console.log(e.target.id)}
+            >
+              Card Owner: {card.card_owner.username}
+            </p>
+
             <img src={card.card_image} alt="place kitten card cover" />
 
             <div onClick={(e) => handleCardSelect({ card })}>See/Edit Card</div>
-
-            <Routes>
-              <Route
-                path="/specificcard/"
-                element={
-                  <SpecificCard
-                    token={token}
-                    cardIndex={cardIndex}
-                    cardID={cardID}
-                  />
-                }
-              />
-            </Routes>
           </div>
         ))}
+        {/* <Link to={`/specificcard${cardID}`} /> */}
       </div>
     </div>
   );
