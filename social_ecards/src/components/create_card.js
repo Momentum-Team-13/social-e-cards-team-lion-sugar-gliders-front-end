@@ -1,23 +1,32 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
+import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
 
 export default function CreateCard({ token, username }) {
+  // add dropdown to include 3 predefined colors. currently data returns: 00FF00
   const [innerMessage, setInnerMessage] = useState("");
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
   const [error, setError] = useState("");
   const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
   const [statusMessage, setStatusMessage] = useState("");
+  const [checked, setChecked] = useState(false);
 
-  console.log(token);
-  console.log(username);
+  // console.log(token);
+  // console.log(username);
 
   let cardOwner = localStorage.getItem("username");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setImgSrc(imgSrc);
+  };
+
+  const handleColorChoice = (e) => {
+    console.log(e.target.id);
+    let colorHexValue = e.target.id;
+    setCardColor(colorHexValue);
   };
 
   const CallInCard = () => {
@@ -28,6 +37,7 @@ export default function CreateCard({ token, username }) {
           card_inner_message: innerMessage,
           card_outer_message: outerMessage,
           card_image: imgSrc,
+          card_color_list: cardColor,
         },
         {
           headers: { Authorization: `Token ${token}` },
@@ -81,7 +91,31 @@ export default function CreateCard({ token, username }) {
           <select>
             {" "}
             <option>followers</option>
-          </select>
+          </select>{" "}
+          <p>Choose A Background Color:</p>
+          <div className="colorChoices">
+            <div className="colorbox" id="pink"></div>
+            <input
+              id="#c71585"
+              name="pink"
+              type="checkbox"
+              onChange={(e) => handleColorChoice(e)}
+            ></input>
+            <div className="colorbox" id="teal"></div>
+            <input
+              id="#008080"
+              name="teal"
+              type="checkbox"
+              onChange={(e) => handleColorChoice(e)}
+            ></input>
+            <div className="colorbox" id="purple"></div>
+            <input
+              id="#653d93"
+              name="purple"
+              type="checkbox"
+              onChange={(e) => handleColorChoice(e)}
+            ></input>
+          </div>
         </div>
         <br />
         <button onClick={() => CallInCard()}>Add Card</button>

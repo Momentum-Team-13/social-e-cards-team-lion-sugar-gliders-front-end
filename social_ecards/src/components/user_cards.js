@@ -67,8 +67,9 @@ const CardList = ({ token }) => {
     }, [])
     .catch((res) => console.log(res));
 
-  const handleCardSelect = (cardID) => {
-    // console.log(cardID);
+  const handleCardSelect = ({ card }) => {
+    let cardID = card.id;
+    console.log(cardID);
     setCardIndex(cardID);
     setDetailPractice(true);
     // navigate(
@@ -88,7 +89,7 @@ const CardList = ({ token }) => {
             <p>Card updated at: {card.updated_at}</p>
             <img src={card.card_image} alt="place kitten card cover" />
 
-            <div onClick={(e) => handleCardSelect(cardID)}>See/Edit Card</div>
+            <div onClick={(e) => handleCardSelect({ card })}>See/Edit Card</div>
 
             <Routes>
               <Route
@@ -105,27 +106,6 @@ const CardList = ({ token }) => {
           </div>
         ))}
       </div>
-      {detailPractice && <CardDetail cardIndex={cardIndex} token={token} />}
-    </div>
-  );
-};
-
-const CardDetail = ({ token, cardID }) => {
-  axios
-    .get(
-      `${baseURL}ecards/${cardID}`,
-      {
-        headers: { Authorization: `Token ${token}` },
-      },
-      []
-    )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((res) => console.log(res));
-  return (
-    <div>
-      <h1>Card Detail</h1>
     </div>
   );
 };

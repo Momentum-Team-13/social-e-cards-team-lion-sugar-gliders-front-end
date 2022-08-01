@@ -9,6 +9,7 @@ export default function LoginForm({ token }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [newUser, setNewUser] = useState(false);
 
   let navigate = useNavigate();
 
@@ -43,9 +44,6 @@ export default function LoginForm({ token }) {
 
   return (
     <div>
-      <Routes>
-        <Route path="/adduser" element={<AddUserForm />} />
-      </Routes>
       <>
         <h2>Please Log In</h2>
         <label htmlFor="username-field"> username</label>
@@ -76,6 +74,9 @@ export default function LoginForm({ token }) {
       {error && <div>{error}</div>}
       Need to create a user?
       <Link to="/adduser">Add New User</Link> |{" "}
+      <Routes>
+        <Route path="/adduser" element={<AddUserForm />} />
+      </Routes>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function AllCards() {
   //   );
   return (
     <>
-      <div className={`card_${color}`}>
+      <div className={`card_${color}`} style={{ backgroundColor: `#${color}` }}>
         <h1>USERNAME's cards</h1>
         <h2>card {cardIndex}</h2>
         <img src={image} alt="profile image" />
