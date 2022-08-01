@@ -44,3 +44,8 @@ img{
 .colorChoices{
   display:inline-flex;
 }
+
+.username{
+  display:flex;
+  flex-direction:row;
+}
