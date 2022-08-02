@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
+import { useNavigate } from "react-router-dom";
 
 export default function AddUserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
   const [confirmation, setConfirmation] = useState([]);
+  const navigate = useNavigate;
   // const token = localStorage.getItem("auth_token");
 
   const AddUser = (event) => {
@@ -20,6 +22,7 @@ export default function AddUserForm() {
       .then((res) => {
         let confirmation = res.request.statusText;
         setConfirmation(confirmation);
+        // navigate("/", { replace: true });
       })
       .catch((res) => {
         let username_error = res.response.data.username;

@@ -108,9 +108,10 @@ const CardList = ({ token }) => {
   const [myCards, setMyCards] = useState([]);
   let navigate = useNavigate();
 
-  const handleEditCard = () => {
-    navigate("/", { replace: true });
-    console.log("Hello");
+  const handleEditCard = (props) => {
+    let cardPK = props.card.id;
+    console.log(cardPK);
+    navigate("/editcard", { replace: true });
   };
 
   axios
@@ -120,12 +121,13 @@ const CardList = ({ token }) => {
     .then((res) => {
       let cards = res.data;
       setMyCards(cards);
+      // console.log(res);
     });
   return (
     <div>
       <h1>Cards You've Made</h1>
       {myCards.map((card) => (
-        <div className="card">
+        <div className="card" id={card.id}>
           <div>{card.card_outer_message}</div>
           <h2>{card.card_inner_message}</h2>
           <p>Card created at: {card.created_at}</p>

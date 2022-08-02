@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import he from "he";
-import AllCards from "./components/user_cards";
+import AllCards from "./components/all_cards";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
@@ -11,6 +11,7 @@ import SeeProfile from "./components/see_profile";
 import AddUserForm from "./components/add_user_form";
 import AllUsers from "./components/all_users";
 import SpecificCard from "./components/specific_card";
+import EditCard from "./components/edit_card";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -57,7 +58,6 @@ function App() {
             </div>
           )}
         </div>
-        {/* <LoginForm /> */}
 
         {token ? (
           <>
@@ -94,18 +94,16 @@ function App() {
                 path="/createcard"
                 element={<CreateCard token={token} username={username} />}
               />
-              {/* <Route
-                path="/editcard"
-                element={<EditCard token={token}/>}
-              /> */}
+              <Route path="/editcard" element={<EditCard token={token} />} />
               <Route
                 path="/allusers"
                 element={<AllUsers token={token} username={username} />}
               />
               <Route
-                path="/specificcard/:cardID"
+                path="/allcards/:cardID"
                 element={<SpecificCard token={token} />}
               />
+              {/* <Route path="/adduser" element={<AddUserForm />} /> */}
             </Routes>
           </>
         ) : (

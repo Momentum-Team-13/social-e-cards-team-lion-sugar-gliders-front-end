@@ -18,6 +18,8 @@ export default function LoginForm({ token, setToken }) {
   // setUsername(user)
   // }
 
+  const handleLogIn = () => {};
+
   const LogIn = (event) => {
     event.preventDefault();
     // when form submits, make an AJAX request to login endpoint and when that happens, capture the login auth token in state --> i do this here bc this is what renders the form. when i get this info i want to pass it into app
@@ -42,40 +44,45 @@ export default function LoginForm({ token, setToken }) {
   };
 
   return (
-    <div>
-      <>
-        <h2>Please Log In</h2>
-        <label htmlFor="username-field"> username</label>
-        <input
-          id="username-field"
-          type="text"
-          onChange={(e) => {
-            let username = e.target.value;
-            localStorage.setItem("username", username);
-            setUsername(username);
-          }}
-        />
-      </>
-      <form>
+    <>
+      <h1 onClick={() => handleLogIn()}> Log In </h1>
+      <h1 onClick={() => console.log("handle Create usera")}> Create user</h1>
+
+      <div>
         <>
-          <label htmlFor="password-field"> password</label>
+          <h2>Please Log In</h2>
+          <label htmlFor="username-field"> username</label>
           <input
-            id="password-field"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            id="username-field"
+            type="text"
+            onChange={(e) => {
+              let username = e.target.value;
+              localStorage.setItem("username", username);
+              setUsername(username);
+            }}
           />
         </>
-        <button type="submit" onClick={(e) => LogIn(e)}>
-          {" "}
-          Log in
-        </button>
-      </form>
-      {error && <div>{error}</div>}
-      Need to create a user?
-      <Link to="/adduser">Add New User</Link> |{" "}
-      <Routes>
-        <Route path="/adduser" element={<AddUserForm />} />
-      </Routes>
-    </div>
+        <form>
+          <>
+            <label htmlFor="password-field"> password</label>
+            <input
+              id="password-field"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </>
+          <button type="submit" onClick={(e) => LogIn(e)}>
+            {" "}
+            Log in
+          </button>
+        </form>
+        {error && <div>{error}</div>}
+        <div>Need to create a user?</div>
+        <Link to="/adduser">Add New User</Link> |{" "}
+        <Routes>
+          <Route path="/adduser" element={<AddUserForm />} />
+        </Routes>
+      </div>
+    </>
   );
 }

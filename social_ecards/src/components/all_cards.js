@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
+import SpecificCard from "./specific_card";
 
 export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
-
 
   // useEffect = () => {
   axios
@@ -14,7 +14,7 @@ export default function AllCards({ token, username }) {
       headers: { Authorization: `Token ${token}` },
     })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       let total = res.data.length;
       setTotalCards(total);
       // const CARDS = res.data;
@@ -75,12 +75,12 @@ const CardList = ({ token, username }) => {
   //   }
   // };
 
-  const handleCardSelect = ({ card }) => {
-    // const { cardID } = useParams;
-    let cardID = card.id;
+  const handleCardSelect = ({ cardID }) => {
     console.log(cardID);
-    setCardIndex(cardID);
-    setDetailPractice(true);
+    // const { cardID } = useParams;
+    // let cardID = card.id;
+    // console.log(card);
+    // setCardIndex(cardID);
     // navigate(
     //   "/specificcard"
     //   // ((cardID = { cardID }), (token = { token }), { cardIndex })
@@ -90,22 +90,20 @@ const CardList = ({ token, username }) => {
   return (
     <div>
       <div>
-        {cardData.map((card, cardID) => (
-          <div className="card" key={card.id}>
-            <h1>{card.card_outer_message}</h1>
-            <h2>{card.card_inner_message}</h2>
-            <p>Card created at: {card.created_at}</p>
-            <p>Card updated at: {card.updated_at}</p>
-            <p
-              id={card.card_owner.id}
-              onClick={(e) => console.log(e.target.id)}
-            >
-              Card Owner: {card.card_owner.username}
-            </p>
-            <img src={card.card_image} alt="place kitten card cover" />
-            {/* could/should I include a default card image if no image */}
-
-            <div onClick={(e) => handleCardSelect({ card })}>See Card</div>
+        {cardData.map((card) => (
+          <div className="card">
+            <SpecificCard
+              cardID={card.id}
+              // key={card.id}
+              card_inner_message={card.card_inner_message}
+              card_outer_message={card.card_outer_message}
+              card_created_at={card.card_created_at}
+              card_updated_at={card.card_updated_at}
+              card_owner={card.card_owner.username}
+              card_image={card.card_image}
+              handleCardSelect={handleCardSelect}
+            />
+            {/* <div onClick={(e) => handleCardSelect({ card })}>See Card</div> */}
           </div>
         ))}
         {/* <Link to={`/specificcard${cardID}`} /> */}
