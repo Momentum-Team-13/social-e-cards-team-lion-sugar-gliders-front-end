@@ -2,10 +2,19 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
+import { Carousel } from "react-bootstrap";
+
 
 export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
+
+
+
+
 
   // useEffect = () => {
   axios
@@ -24,16 +33,18 @@ export default function AllCards({ token, username }) {
   // };
 
   return (
-    <div>
+    <div >
       <h1>See all cards</h1>
-      <div>
+      <div className="containerallcards">
         <Index username={username} totalCards={totalCards} />
         <CardList token={token} />
+    
+      
       </div>
       <div></div>
     </div>
   );
-}
+  }
 
 const Index = ({ username, totalCards }) => {
   return (
@@ -50,6 +61,18 @@ const CardList = ({ token }) => {
   const [cardIndex, setCardIndex] = useState(0);
   const navigate = useNavigate();
   const [detailPractice, setDetailPractice] = useState(false);
+
+// Carousel
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 280,     
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    adaptiveHeight: true,
+    rows: 1,   
+}
 
   axios
     .get(`${baseURL}ecards/`, {
@@ -77,11 +100,13 @@ const CardList = ({ token }) => {
     // );
   };
 
+
   return (
     <div>
-      <div>
+      <div className="containerallcards">
+        <Slider {...settings}>
         {cardData.map((card, cardID) => (
-          <div className="card" key={card.id}>
+        <div className="card" key={card.id}>
             <h1>{card.card_outer_message}</h1>
             <h2>{card.card_inner_message}</h2>
             <p>Card created at: {card.created_at}</p>
@@ -99,6 +124,7 @@ const CardList = ({ token }) => {
           </div>
         ))}
         {/* <Link to={`/specificcard${cardID}`} /> */}
+      </Slider>
       </div>
     </div>
   );

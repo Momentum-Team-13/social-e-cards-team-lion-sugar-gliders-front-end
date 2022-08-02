@@ -20,6 +20,7 @@ function Cards() {
     
     return (
         <div className="container"> 
+        <div>"hello"</div>
             <Slider {...settings}>
             {listCards.map((currentCard) => {
                 return( <Card  currentCard={currentCard}/>
