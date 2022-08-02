@@ -44,91 +44,60 @@ export default function LoginForm({ token, setToken }) {
   };
 
   return (
+    <div>
+      <div className="loginHomepage">
+        <h1 onClick={() => handleLogIn()}> Log In </h1>
+        <h1 onClick={() => console.log("handle Create users")}> Create user</h1>
+        <h1> Welcome to our page</h1>
+        <br />
+      </div>
 
-<>
-      <h1 onClick={() => handleLogIn()}> Log In </h1>
-      <h1 onClick={() => console.log("handle Create usera")}> Create user</h1>
-
-      <div>
+      <div id="container-LogIn">
         <>
           <h2>Please Log In</h2>
-          <label htmlFor="username-field"> username</label>
-    <div className="loginHomepage">
-      <h1> Welcome to our page</h1>
-      <br/>
-    <div id="container-LogIn">
-      <>
-        <h2>Please Log In</h2>
-        <label htmlFor="username-field" style={{ fontSize: "17px" }}> Username</label>
-        <br/>
-        <input
-          id="username-field"
-          type="text"
-          onChange={(e) => {
-            let username = e.target.value;
-            localStorage.setItem("username", username);
-            setUsername(username);
-          }}
-        />
-      </>
-      
-      <form>
-        <>
-        <br/>
-          <label htmlFor="password-field" style={{ fontSize: "17px" }}> Password</label>
-          <br/>
-
-          <input
-            id="username-field"
-            type="text"
-            onChange={(e) => {
-              let username = e.target.value;
-              localStorage.setItem("username", username);
-              setUsername(username);
-            }}
-          />
-        </>
-
-        <form>
-          <>
-            <label htmlFor="password-field"> password</label>
+          <form>
+            <label htmlFor="username-field" style={{ fontSize: "17px" }}>
+              {" "}
+              Username
+            </label>
+            <br />
+            <input
+              id="username-field"
+              type="text"
+              onChange={(e) => {
+                let username = e.target.value;
+                localStorage.setItem("username", username);
+                setUsername(username);
+              }}
+            />
+            <br />
+            <label htmlFor="password-field" style={{ fontSize: "17px" }}>
+              {" "}
+              Password
+            </label>
+            <br />
             <input
               id="password-field"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-          </>
-          <button type="submit" onClick={(e) => LogIn(e)}>
-            {" "}
-            Log in
-          </button>
-        </form>
-        {error && <div>{error}</div>}
-        <div>Need to create a user?</div>
-        <Link to="/adduser">Add New User</Link> |{" "}
-        <Routes>
-          <Route path="/adduser" element={<AddUserForm />} />
-        </Routes>
+            <button type="submit" onClick={(e) => LogIn(e)}>
+              {" "}
+              Log in
+            </button>
+          </form>
+          {error && <div>{error}</div>}
+          <br />
+          <p>Need to create a user?</p>
+          <br />
+          <div style={{ fontSize: "17px" }}>
+            <Link to="/adduser">Add New User</Link> |{" "}
+            <Routes>
+              <Route path="/adduser" element={<AddUserForm />} />
+            </Routes>
+          </div>
+        </>
       </div>
-    </>
-          <br/>
-          <br/>
-        <button id="buttonlogin" type="submit" onClick={(e) => LogIn(e)}>
-          {" "}
-          Log in
-        </button>
-      </form>
-      {error && <div>{error}</div>}
-      <br/>
-      Need to create a user?
-      <br/>
-      <div style={{ fontSize: "17px" }}>
-      <Link to="/adduser">Add New User</Link> |{" "}
-      <Routes>
-        <Route path="/adduser" element={<AddUserForm />} />
-      </Routes>
-      </div>
-    </div>
     </div>
   );
 }
