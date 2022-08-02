@@ -75,8 +75,8 @@ const CardList = ({ token, username }) => {
   //   }
   // };
 
-  const handleCardSelect = ({ cardID }) => {
-    console.log(cardID);
+  const handleCardSelect = (props) => {
+    console.log(props);
     // const { cardID } = useParams;
     // let cardID = card.id;
     // console.log(card);
