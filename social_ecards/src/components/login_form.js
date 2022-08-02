@@ -44,10 +44,14 @@ export default function LoginForm({ token, setToken }) {
   };
 
   return (
-    <div>
+    <div className="loginHomepage">
+      <h1> Welcome to our page</h1>
+      <br/>
+    <div id="container-LogIn">
       <>
         <h2>Please Log In</h2>
-        <label htmlFor="username-field"> username</label>
+        <label htmlFor="username-field" style={{ fontSize: "17px" }}> Username</label>
+        <br/>
         <input
           id="username-field"
           type="text"
@@ -58,26 +62,36 @@ export default function LoginForm({ token, setToken }) {
           }}
         />
       </>
+      
       <form>
         <>
-          <label htmlFor="password-field"> password</label>
+        <br/>
+          <label htmlFor="password-field" style={{ fontSize: "17px" }}> Password</label>
+          <br/>
           <input
             id="password-field"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </>
-        <button type="submit" onClick={(e) => LogIn(e)}>
+          <br/>
+          <br/>
+        <button id="buttonlogin" type="submit" onClick={(e) => LogIn(e)}>
           {" "}
           Log in
         </button>
       </form>
       {error && <div>{error}</div>}
+      <br/>
       Need to create a user?
+      <br/>
+      <div style={{ fontSize: "17px" }}>
       <Link to="/adduser">Add New User</Link> |{" "}
       <Routes>
         <Route path="/adduser" element={<AddUserForm />} />
       </Routes>
+      </div>
+    </div>
     </div>
   );
 }
