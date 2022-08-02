@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
 import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
+import { createRef } from "react";
 
 export default function CreateCard({ token, username }) {
   // add dropdown to include 3 predefined colors. currently data returns: 00FF00
@@ -9,9 +10,10 @@ export default function CreateCard({ token, username }) {
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
   const [error, setError] = useState("");
-  const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
+  const [imgSrc, setImgSrc] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
   const [checked, setChecked] = useState(false);
+  // const [fileSrc, setFileSrc] = useState(null);
 
   // console.log(token);
   // console.log(username);
@@ -29,6 +31,15 @@ export default function CreateCard({ token, username }) {
     setCardColor(colorHexValue);
   };
 
+  const handleImageChoice = (e) => {
+    setImgSrc(e.target.id);
+  };
+
+  // const handleFileUpload = (props) => {
+  //   const fileObject = props.target.files;
+  //   setFileSrc(fileObject[0]);
+  // };
+
   const CallInCard = () => {
     axios
       .post(
@@ -37,6 +48,7 @@ export default function CreateCard({ token, username }) {
           card_inner_message: innerMessage,
           card_outer_message: outerMessage,
           card_image: imgSrc,
+          // card_image_file: fileSrc,
           card_color_list: cardColor,
         },
         {
@@ -77,7 +89,14 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-          <img alt="card-decoration" src={imgSrc} />
+          {/* <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
+          <img alt="card-decoration" src="https://placekitten.com/200/300/" />
+          <label>chose placekitten</label>
+          <input
+            type="checkbox"
+            id="https://placekitten.com/200/300/"
+            onChange={(e) => handleImageChoice(e)}
+          ></input>
         </div>
         <div>
           <label> This card is from:</label>
