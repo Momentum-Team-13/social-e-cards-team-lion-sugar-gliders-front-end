@@ -1,7 +1,18 @@
 body {
   background-color: rgb(20, 134, 159);
+  justify-content: center;
+  /* background-image: url("andrej-lisakov-fGZ2x8wFxC0-unsplash.jpg");
+  background-size: cover; */
+
 }
 
+h1{
+  color: rgb(247, 236, 223);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  margin-left: 12%;
+}
 .slick-slide > div {
   margin:   20px;
 }
@@ -14,9 +25,14 @@ body {
   background-color: rgb(244, 182, 137);
   border-radius: 8px;
   overflow: hidden;
-  height: 500px;
+  height: 450px;
   color: brown;
-  
+}
+
+.card:hover{
+  transform: scale(1.08);
+  box-shadow: 0px 0px 12px 0px;
+  color: rgb(76, 206, 238);
 }
 
 .card-top h1{
@@ -30,10 +46,11 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-
   margin-top: 0px;
+  
+  
 }
 
 
@@ -71,5 +88,6 @@ button1{
 
 .more{
   margin-top: -1px;
-  font-size: 10px;;
+  font-size: 10px;
+  color: blueviolet;
 }
