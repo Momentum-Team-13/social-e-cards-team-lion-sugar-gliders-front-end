@@ -42,7 +42,7 @@ export default function AddUserForm() {
 
   return (
     <div className="add_user">
-      <h1> Add User</h1>
+      <p> Add User</p>
 
       <form onSubmit={console.log("form submitted")}>
         <div>
@@ -61,10 +61,12 @@ export default function AddUserForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" onClick={(e) => AddUser(e)}>
+        <br/>
+        <button id="button_adduser" type="submit" onClick={(e) => AddUser(e)}>
           {" "}
           Add User
         </button>
+        
         <div>{confirmation && <div>{confirmation}</div>}</div>
       </form>
 
