@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
-import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
-import { createRef } from "react";
+import { useParams } from "react-router-dom";
 
-export default function CreateCard({ token, username }) {
-  // add dropdown to include 3 predefined colors. currently data returns: 00FF00
+export default function EditCard({ token }) {
   const [innerMessage, setInnerMessage] = useState("");
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
   const [error, setError] = useState("");
-  const [imgSrc, setImgSrc] = useState(null);
+  const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
   const [statusMessage, setStatusMessage] = useState("");
   const [checked, setChecked] = useState(false);
-  // const [fileSrc, setFileSrc] = useState(null);
-
-  // console.log(token);
-  // console.log(username);
-
   let cardOwner = localStorage.getItem("username");
+
+  let params = useParams();
+  let cardID = params.cardID;
+  console.log(params);
+  console.log(cardID);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,24 +29,15 @@ export default function CreateCard({ token, username }) {
     setCardColor(colorHexValue);
   };
 
-  const handleImageChoice = (e) => {
-    setImgSrc(e.target.id);
-  };
-
-  // const handleFileUpload = (props) => {
-  //   const fileObject = props.target.files;
-  //   setFileSrc(fileObject[0]);
-  // };
-
-  const CallInCard = () => {
+  const CallInEdit = () => {
     axios
-      .post(
-        `${baseURL}ecards/`,
+      .patch(
+        `${baseURL}ecards/${cardID}`,
         {
+          id: cardID,
           card_inner_message: innerMessage,
           card_outer_message: outerMessage,
           card_image: imgSrc,
-          // card_image_file: fileSrc,
           card_color_list: cardColor,
         },
         {
@@ -70,7 +59,7 @@ export default function CreateCard({ token, username }) {
 
   return (
     <div className="cardForm">
-      <h3>create a card</h3>
+      <h3>Edit a card</h3>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="inner-message">Inner Message</label>
@@ -89,14 +78,7 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-          {/* <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
-          <img alt="card-decoration" src="https://placekitten.com/200/300/" />
-          <label>chose placekitten</label>
-          <input
-            type="checkbox"
-            id="https://placekitten.com/200/300/"
-            onChange={(e) => handleImageChoice(e)}
-          ></input>
+          <img alt="card-decoration" src={imgSrc} />
         </div>
         <div>
           <label> This card is from:</label>
@@ -137,8 +119,8 @@ export default function CreateCard({ token, username }) {
           </div>
         </div>
         <br />
-        <button onClick={() => CallInCard()}>Add Card</button>
-        <button> Add to Drafts</button>
+        <button onClick={() => CallInEdit()}>Edit Card</button>
+        {/* <button> Add to Drafts</button> */}
         {statusMessage && <div>Your card has been {statusMessage}</div>}
         {error && <div>{error}</div>}
       </form>
