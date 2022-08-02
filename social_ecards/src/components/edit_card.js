@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function EditCard({ token }) {
   const [innerMessage, setInnerMessage] = useState("");
@@ -11,6 +12,11 @@ export default function EditCard({ token }) {
   const [statusMessage, setStatusMessage] = useState("");
   const [checked, setChecked] = useState(false);
   let cardOwner = localStorage.getItem("username");
+
+  let params = useParams();
+  let cardID = params.cardID;
+  console.log(params);
+  console.log(cardID);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +31,10 @@ export default function EditCard({ token }) {
 
   const CallInEdit = () => {
     axios
-      .post(
-        `${baseURL}ecards/`,
+      .patch(
+        `${baseURL}ecards/${cardID}`,
         {
+          id: cardID,
           card_inner_message: innerMessage,
           card_outer_message: outerMessage,
           card_image: imgSrc,
@@ -88,32 +95,32 @@ export default function EditCard({ token }) {
           </select>{" "}
           <p>Choose A Background Color:</p>
           <div className="colorChoices">
-            <div className="colorbox" id="pink"></div>
+            <div className="colorbox" id="green"></div>
             <input
-              id="#c71585"
-              name="pink"
+              id="00FF00"
+              name="green"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>
-            <div className="colorbox" id="teal"></div>
+            <div className="colorbox" id="red"></div>
             <input
-              id="#008080"
-              name="teal"
+              id="ff0000"
+              name="red"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>
-            <div className="colorbox" id="purple"></div>
+            <div className="colorbox" id="blue"></div>
             <input
-              id="#653d93"
-              name="purple"
+              id="0000FF"
+              name="blue"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>
           </div>
         </div>
         <br />
-        <button onClick={() => CallInEdit()}>Add Card</button>
-        <button> Add to Drafts</button>
+        <button onClick={() => CallInEdit()}>Edit Card</button>
+        {/* <button> Add to Drafts</button> */}
         {statusMessage && <div>Your card has been {statusMessage}</div>}
         {error && <div>{error}</div>}
       </form>

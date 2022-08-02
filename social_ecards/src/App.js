@@ -12,6 +12,7 @@ import AddUserForm from "./components/add_user_form";
 import AllUsers from "./components/all_users";
 import SpecificCard from "./components/specific_card";
 import EditCard from "./components/edit_card";
+import DeleteCard from "./components/delete_card";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -94,7 +95,14 @@ function App() {
                 path="/createcard"
                 element={<CreateCard token={token} username={username} />}
               />
-              <Route path="/editcard" element={<EditCard token={token} />} />
+              <Route
+                path="/editcard/:cardID"
+                element={<EditCard token={token} />}
+              />
+              <Route
+                path="/deletecard/:cardID"
+                element={<DeleteCard token={token} />}
+              />
               <Route
                 path="/allusers"
                 element={<AllUsers token={token} username={username} />}

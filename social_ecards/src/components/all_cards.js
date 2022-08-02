@@ -97,8 +97,8 @@ const CardList = ({ token, username }) => {
               // key={card.id}
               card_inner_message={card.card_inner_message}
               card_outer_message={card.card_outer_message}
-              card_created_at={card.card_created_at}
-              card_updated_at={card.card_updated_at}
+              card_created_at={card.created_at}
+              card_updated_at={card.updated_at}
               card_owner={card.card_owner.username}
               card_image={card.card_image}
               handleCardSelect={handleCardSelect}

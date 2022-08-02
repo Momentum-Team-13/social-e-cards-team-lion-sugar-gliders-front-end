@@ -109,9 +109,15 @@ const CardList = ({ token }) => {
   let navigate = useNavigate();
 
   const handleEditCard = (props) => {
-    let cardPK = props.card.id;
-    console.log(cardPK);
-    navigate("/editcard", { replace: true });
+    let cardID = props.card.id;
+    console.log(cardID);
+    navigate(`/editcard/${cardID}`);
+  };
+
+  const handleDeleteCard = (props) => {
+    let cardID = props.card.id;
+    console.log(cardID);
+    navigate(`/deletecard/${cardID}`);
   };
 
   axios
@@ -121,7 +127,6 @@ const CardList = ({ token }) => {
     .then((res) => {
       let cards = res.data;
       setMyCards(cards);
-      // console.log(res);
     });
   return (
     <div>
@@ -134,16 +139,9 @@ const CardList = ({ token }) => {
           <p>Card updated at: {card.updated_at}</p>
           <img src={card.card_image} alt="place kitten card cover" />
           <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
+          <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div>
         </div>
       ))}
     </div>
   );
 };
-
-// const EditForm = () => {
-//   return (
-//     <div>
-//       <h1>Edit Your Profile</h1>
-//     </div>
-//   );
-// };

@@ -94,24 +94,24 @@ export default function CreateCard({ token, username }) {
           </select>{" "}
           <p>Choose A Background Color:</p>
           <div className="colorChoices">
-            <div className="colorbox" id="pink"></div>
+            <div className="colorbox" id="green"></div>
             <input
-              id="#c71585"
-              name="pink"
+              id="00FF00"
+              name="green"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>
-            <div className="colorbox" id="teal"></div>
+            <div className="colorbox" id="red"></div>
             <input
-              id="#008080"
-              name="teal"
+              id="ff0000"
+              name="red"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>
-            <div className="colorbox" id="purple"></div>
+            <div className="colorbox" id="blue"></div>
             <input
-              id="#653d93"
-              name="purple"
+              id="0000FF"
+              name="blue"
               type="checkbox"
               onChange={(e) => handleColorChoice(e)}
             ></input>

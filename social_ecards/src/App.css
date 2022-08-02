@@ -28,12 +28,12 @@ img{
   width: 200px;
 }
 
-#pink{  background-color: #c71585;
+#green{  background-color: #00FF00;
 }
 
-#teal{  background-color: #008080;}
+#red{  background-color: #ff0000;}
 
-#purple{  background-color:  #653d93;}
+#blue{  background-color:  #0000FF;}
 
 .colorbox{
   width:50px;

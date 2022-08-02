@@ -3,7 +3,7 @@ import { useEffect, useInsertionEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { baseURL } from "../helpers/constants";
 
-export const CardDetail = ({ token }) => {
+export default function CardDetail({ token }) {
   const [card, setCard] = useState(null);
   const { cardID } = useParams();
   const [error, setError] = useState([]);
@@ -27,4 +27,4 @@ export const CardDetail = ({ token }) => {
       )}
     </>
   );
-};
+}
