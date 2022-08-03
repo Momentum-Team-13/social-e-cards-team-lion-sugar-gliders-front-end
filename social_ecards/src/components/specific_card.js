@@ -10,12 +10,6 @@ export default function SpecificCard({
   cardID,
   HandleCardSelect,
 }) {
-  let params = useParams();
-  // access the params passed through the link
-  // axios request
-
-  // console.log(params);
-
   return (
     <div>
       <h1>{card_outer_message}</h1>
@@ -24,8 +18,7 @@ export default function SpecificCard({
       <div>updated at:{card_updated_at}</div>
       <div>{card_owner}</div>
       <img src={card_image} />
-      <div onClick={HandleCardSelect}> See Card Details</div>
-      <Link to={`/allcards/${cardID}`}></Link>
+      <Link to={`/allcards/${cardID}`}>See Card Details</Link>
     </div>
   );
 }

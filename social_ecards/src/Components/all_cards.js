@@ -76,20 +76,6 @@ const CardList = ({ token, username }) => {
     }, [])
     .catch((res) => console.log(res));
 
-  const HandleCardSelect = (props) => {
-    console.log(props);
-    // navigate(`allcards/${cardID}`);
-
-    // const { cardID } = useParams;
-    // let cardID = card.id;
-    // console.log(card);
-    // setCardIndex(cardID);
-    // navigate(
-    //   "/specificcard"
-    //   // ((cardID = { cardID }), (token = { token }), { cardIndex })
-    // );
-  };
-
   return (
     <div>
       <div>
@@ -106,7 +92,6 @@ const CardList = ({ token, username }) => {
               card_image={
                 card.card_image_file ? card.card_image_file : card.card_image
               }
-              HandleCardSelect={HandleCardSelect}
             />
           </div>
         ))}

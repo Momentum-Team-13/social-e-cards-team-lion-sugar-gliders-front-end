@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
 import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
-import { createRef } from "react";
 
 export default function CreateCard({ token, username }) {
   const [innerMessage, setInnerMessage] = useState("");

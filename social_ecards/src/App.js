@@ -10,7 +10,7 @@ import CreateCard from "./components/create_card";
 import SeeProfile from "./components/see_profile";
 import AddUserForm from "./components/add_user_form";
 import AllUsers from "./components/all_users";
-import SpecificCard from "./components/specific_card";
+import SpecificCardData from "./components/specific_card_data";
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
 // import listCards from './data.js';
@@ -106,7 +106,7 @@ function App() {
               />
               <Route
                 path="/allcards/:cardID"
-                element={<SpecificCard token={token} />}
+                element={<SpecificCardData token={token} />}
               />
             </Routes>
           </div>
