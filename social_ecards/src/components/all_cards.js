@@ -3,6 +3,9 @@ import { Routes, Route, useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../helpers/constants";
 import SpecificCard from "./specific_card";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
@@ -26,7 +29,7 @@ export default function AllCards({ token, username }) {
 
   return (
     <div>
-      <h1>See all cards</h1>
+      <h2>See all cards</h2>
       <div>
         <Index username={username} totalCards={totalCards} />
         <CardList token={token} username={username} />
@@ -39,7 +42,7 @@ export default function AllCards({ token, username }) {
 const Index = ({ username, totalCards }) => {
   return (
     <>
-      <div>
+      <div style={{color:"bisque", marginLeft:"50px", fontSize:"25px"}}>
         {username} has {totalCards} total cards
       </div>
     </>
@@ -87,26 +90,43 @@ const CardList = ({ token, username }) => {
     // );
   };
 
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 280,     
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        adaptiveHeight: true,
+        rows: 1,   
+    }
+
+
   return (
     <div>
       <div>
+      <Slider {...settings}>
         {cardData.map((card) => (
           <div className="card">
-            <SpecificCard
-              cardID={card.id}
-              // key={card.id}
-              card_inner_message={card.card_inner_message}
-              card_outer_message={card.card_outer_message}
-              card_created_at={card.created_at}
-              card_updated_at={card.updated_at}
-              card_owner={card.card_owner.username}
-              card_image={card.card_image}
-              handleCardSelect={handleCardSelect}
-            />
-            {/* <div onClick={(e) => handleCardSelect({ card })}>See Card</div> */}
-          </div>
+                <SpecificCard 
+                  cardID={card.id} 
+                  // key={card.id}
+                  card_inner_message={card.card_inner_message}
+                  card_outer_message={card.card_outer_message}
+                  card_created_at={card.created_at}
+                  card_updated_at={card.updated_at}
+                  card_owner={card.card_owner.username}
+                  card_image={card.card_image}
+                  handleCardSelect={handleCardSelect}
+                />
+                {/* <div onClick={(e) => handleCardSelect({ card })}>See Card</div> */}
+                
+            </div>
+          
         ))}
         {/* <Link to={`/specificcard${cardID}`} /> */}
+        </Slider>
       </div>
     </div>
   );

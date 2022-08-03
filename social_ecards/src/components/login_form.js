@@ -10,6 +10,7 @@ export default function LoginForm({ token, setToken }) {
   const [error, setError] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [newUser, setNewUser] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   let navigate = useNavigate();
 
@@ -44,59 +45,60 @@ export default function LoginForm({ token, setToken }) {
   };
 
   return (
-    <div>
-      <div className="loginHomepage">
+    <div className="loginHomepage">
+      
         <h1 onClick={() => handleLogIn()}> Log In </h1>
         <h1 onClick={() => console.log("handle Create users")}> Create user</h1>
-        <h1> Welcome to our page</h1>
+        <h2> Welcome to our page</h2>
         <br />
-      </div>
-
-      <div id="container-LogIn">
-        <>
-          <h2>Please Log In</h2>
-          <form>
-            <label htmlFor="username-field" style={{ fontSize: "17px" }}>
-              {" "}
-              Username
-            </label>
-            <br />
-            <input
-              id="username-field"
-              type="text"
-              onChange={(e) => {
-                let username = e.target.value;
-                localStorage.setItem("username", username);
-                setUsername(username);
-              }}
-            />
-            <br />
-            <label htmlFor="password-field" style={{ fontSize: "17px" }}>
-              {" "}
-              Password
-            </label>
-            <br />
-            <input
-              id="password-field"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit" onClick={(e) => LogIn(e)}>
-              {" "}
-              Log in
-            </button>
-          </form>
-          {error && <div>{error}</div>}
-          <br />
-          <p>Need to create a user?</p>
-          <br />
-          <div style={{ fontSize: "17px" }}>
-            <Link to="/adduser">Add New User</Link> |{" "}
-            <Routes>
-              <Route path="/adduser" element={<AddUserForm />} />
-            </Routes>
-          </div>
-        </>
+        
+        
+          <div id="container-LogIn">
+              <h3>Please Log In</h3>
+              <form>
+                <label htmlFor="username-field" style={{ fontSize: "20px" }}>
+                  {" "}
+                  Username
+                </label>
+                <br/>
+                <input
+                  id="username-field" style={{ fontSize: "20px" }}
+                  type="text"
+                  onChange={(e) => {
+                    let username = e.target.value;
+                    localStorage.setItem("username", username);
+                    setUsername(username);
+                  }}
+                  />
+                <br />
+                <label htmlFor="password-field" style={{ fontSize: "20px" }}>
+                  {" "}
+                  Password
+                </label>
+                <br />
+                <input
+                  id="password-field" style={{ fontSize: "20px" }}
+                  type="password"
+                  
+                  onChange={(e) => setPassword(e.target.value)}/>
+                  <br/>
+                  <br/>
+                <button id="buttonlogin" type="submit" onClick={(e) => LogIn(e)}>
+                  {" "}
+                  Log in
+                </button>
+              </form>
+              
+              {error && <div>{error}</div>}
+              
+              <p>Need to create a user?</p> 
+              <div style={{ fontSize: "17px" }}>
+                <Link  to="/adduser">Add New User</Link> |{" "}
+                <Routes>
+                  <Route path="/adduser" element={<AddUserForm />} />
+                </Routes>
+              </div>
+        
       </div>
     </div>
   );

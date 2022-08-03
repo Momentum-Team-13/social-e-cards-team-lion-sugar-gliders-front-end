@@ -134,7 +134,7 @@ const CardList = ({ token }) => {
       {myCards.map((card) => (
         <div className="card" id={card.id}>
           <div>{card.card_outer_message}</div>
-          <h2>{card.card_inner_message}</h2>
+          <div>{card.card_inner_message}</div>
           <p>Card created at: {card.created_at}</p>
           <p>Card updated at: {card.updated_at}</p>
           <img src={card.card_image} alt="place kitten card cover" />

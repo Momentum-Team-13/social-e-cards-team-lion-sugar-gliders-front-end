@@ -2,6 +2,8 @@ import axios from "axios";
 import { baseURL } from "../helpers/constants";
 import { useState, useEffect } from "react";
 
+
+
 export default function AllUsers({ token, username }) {
   const [userData, setUserData] = useState([]);
   const [userID, setUserID] = useState("");
@@ -56,9 +58,13 @@ const UserData = ({ token, setUserID, setUserFollowingData }) => {
       })
       .catch((res) => console.log(res));
   };
+
+
+
   return (
     <div>
       <h1>See All Users</h1>
+      
       {userInfo.map((user) => (
         <div className="username" key={user.username}>
           <strong>Username: </strong>
@@ -77,6 +83,7 @@ const UserData = ({ token, setUserID, setUserFollowingData }) => {
         </div>
       ))}
       {statusMessage && <div>{statusMessage}</div>}
+
     </div>
   );
 };
