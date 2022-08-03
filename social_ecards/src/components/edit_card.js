@@ -8,10 +8,11 @@ export default function EditCard({ token }) {
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
   const [error, setError] = useState("");
-  const [imgSrc, setImgSrc] = useState("https://placekitten.com/200/300/");
+  const [imgSrc, setImgSrc] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
   const [checked, setChecked] = useState(false);
   let cardOwner = localStorage.getItem("username");
+  const [fileSrc, setFileSrc] = useState(null);
 
   let params = useParams();
   let cardID = params.cardID;
@@ -29,21 +30,29 @@ export default function EditCard({ token }) {
     setCardColor(colorHexValue);
   };
 
+  const handleImageChoice = (e) => {
+    setImgSrc(e.target.id);
+  };
+
+  const handleFileUpload = (props) => {
+    const fileObject = props.target.files;
+    console.log(fileObject[0]);
+    setFileSrc(fileObject[0]);
+  };
+
   const CallInEdit = () => {
+    const formData = new FormData();
+    formData.append("card_inner_message", innerMessage);
+    formData.append("card_outer_message", outerMessage);
+    if (fileSrc) {
+      formData.append("card_image_file", fileSrc, fileSrc.name);
+    } else {
+      formData.append("card_image", imgSrc);
+    }
     axios
-      .patch(
-        `${baseURL}ecards/${cardID}`,
-        {
-          id: cardID,
-          card_inner_message: innerMessage,
-          card_outer_message: outerMessage,
-          card_image: imgSrc,
-          card_color_list: cardColor,
-        },
-        {
-          headers: { Authorization: `Token ${token}` },
-        }
-      )
+      .patch(`${baseURL}ecards/${cardID}`, formData, {
+        headers: { Authorization: `Token ${token}` },
+      })
       .then((res) => {
         let statusMessage = res.request.statusText;
         setStatusMessage(statusMessage);
@@ -78,7 +87,14 @@ export default function EditCard({ token }) {
           />
         </div>
         <div>
-          <img alt="card-decoration" src={imgSrc} />
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          <img alt="card-decoration" src="https://placekitten.com/200/300/" />
+          <label>chose placekitten</label>
+          <input
+            type="checkbox"
+            id="https://placekitten.com/200/300/"
+            onChange={(e) => handleImageChoice(e)}
+          ></input>
         </div>
         <div>
           <label> This card is from:</label>

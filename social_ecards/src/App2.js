@@ -3,8 +3,7 @@
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
 // import listCards from './data.js';
-// import Cards from './Components/Allcardscomponent'
-
+// import Cards from './components/Allcardscomponent'
 
 // function App() {
 

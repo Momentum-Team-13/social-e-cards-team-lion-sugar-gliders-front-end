@@ -8,6 +8,11 @@ export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
 
+  const navigate = useNavigate();
+
+  const params = useParams();
+  console.log(params);
+
   // useEffect = () => {
   axios
     .get(`${baseURL}ecards/`, {
@@ -53,6 +58,8 @@ const CardList = ({ token, username }) => {
   const [detailPractice, setDetailPractice] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
   const [cardOwner, setCardOwner] = useState("");
+  const params = useParams();
+  // console.log(params);
 
   axios
     .get(`${baseURL}ecards/`, {
@@ -69,14 +76,10 @@ const CardList = ({ token, username }) => {
     }, [])
     .catch((res) => console.log(res));
 
-  // useEffect = () => {
-  //   if ({ username } === cardOwner) {
-  //     return <button>Edit Card</button>;
-  //   }
-  // };
-
-  const handleCardSelect = (props) => {
+  const HandleCardSelect = (props) => {
     console.log(props);
+    // navigate(`allcards/${cardID}`);
+
     // const { cardID } = useParams;
     // let cardID = card.id;
     // console.log(card);
@@ -91,7 +94,7 @@ const CardList = ({ token, username }) => {
     <div>
       <div>
         {cardData.map((card) => (
-          <div className="card">
+          <div id="cardPage" className="card">
             <SpecificCard
               cardID={card.id}
               // key={card.id}
@@ -100,10 +103,11 @@ const CardList = ({ token, username }) => {
               card_created_at={card.created_at}
               card_updated_at={card.updated_at}
               card_owner={card.card_owner.username}
-              card_image={card.card_image}
-              handleCardSelect={handleCardSelect}
+              card_image={
+                card.card_image_file ? card.card_image_file : card.card_image
+              }
+              HandleCardSelect={HandleCardSelect}
             />
-            {/* <div onClick={(e) => handleCardSelect({ card })}>See Card</div> */}
           </div>
         ))}
         {/* <Link to={`/specificcard${cardID}`} /> */}

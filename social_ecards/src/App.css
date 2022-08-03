@@ -33,6 +33,12 @@ display: inline-flex;
   
 }
 
+#cardPage{
+  display:flex;
+  flex-directon: row;
+  width: 300px;
+}
+
 img{
     width: 75%;
     height: 70%;
