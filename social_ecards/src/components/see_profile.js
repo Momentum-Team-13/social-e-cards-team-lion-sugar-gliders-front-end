@@ -3,6 +3,10 @@ import { baseURL } from "../helpers/constants";
 import { useEffect, useState } from "react";
 import { useResolvedPath, useNavigate } from "react-router-dom";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 export default function SeeProfile({ token, username }) {
   const [profileInfo, setProfileInfo] = useState(null);
   const [followerList, setFollowerList] = useState([]);
@@ -59,7 +63,12 @@ export default function SeeProfile({ token, username }) {
   return (
     <div>
       <>
-        <div onClick={(e) => getProfileInfo(e)}> click to get user info</div>
+        <h2>Cards You've Made</h2>
+        <h4>My cards</h4>
+        <button id="seeinfo" onClick={(e) => getProfileInfo(e)}>
+          {" "}
+          click to get user info
+        </button>
         {profileInfo && (
           <div>
             <h1>{profileInfo.username}'s page</h1>
@@ -68,9 +77,11 @@ export default function SeeProfile({ token, username }) {
             {/* <button onClick={() => handleEdit()}>Edit Profile</button> */}
           </div>
         )}
-        <h3>{username}'s followers</h3>
-        <div onClick={(e) => seeFollowers(e)}> click to see follower list</div>
-
+        <h4>{username}'s followers</h4>
+        <button id="seeinfo" onClick={(e) => seeFollowers(e)}>
+          {" "}
+          click to see follower list
+        </button>
         <div>
           {followerList && (
             <div className="follower_list">
@@ -127,23 +138,53 @@ const CardList = ({ token }) => {
       let cards = res.data;
       setMyCards(cards);
     });
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 280,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    adaptiveHeight: true,
+    rows: 1,
+  };
+
   return (
     <div>
-      <h1>Cards You've Made</h1>
-      {myCards.map((card) => (
-        <div className="card" id={card.id}>
-          <div>{card.card_outer_message}</div>
-          <h2>{card.card_inner_message}</h2>
-          <p>Card created at: {card.created_at}</p>
-          <p>Card updated at: {card.updated_at}</p>
-          <img
-            src={card.card_image_file ? card.card_image_file : card.card_image}
-            alt="place kitten card cover"
-          />
-          <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
-          <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div>
-        </div>
-      ))}
+      <Slider {...settings}>
+        {myCards.map((card) => (
+          <div className="card" id={card.id}>
+            <img
+              className="img"
+              src={card.card_image}
+              alt="place kitten card cover"
+            />
+            <div>{card.card_outer_message}</div>
+            <div>{card.card_inner_message}</div>
+            <div className="see-profilecards">
+              <p>Card created at: {card.created_at}</p>
+              <p>Card updated at: {card.updated_at}</p>
+              <img
+                src={
+                  card.card_image_file ? card.card_image_file : card.card_image
+                }
+                alt="place kitten card cover"
+              />
+              <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
+              <div onClick={(e) => handleDeleteCard({ card })}>
+                Delete card{" "}
+              </div>
+              <button onClick={(e) => handleEditCard({ card })}>
+                Edit Card
+              </button>
+              <button onClick={(e) => handleDeleteCard({ card })}>
+                Delete card{" "}
+              </button>
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };

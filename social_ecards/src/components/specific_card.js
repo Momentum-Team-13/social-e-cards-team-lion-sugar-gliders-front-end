@@ -10,15 +10,26 @@ export default function SpecificCard({
   cardID,
   HandleCardSelect,
 }) {
+  // access the params passed through the link
+  // axios request
+
+  const params = useParams();
+  // console.log(params);
+
   return (
     <div>
-      <h1>{card_outer_message}</h1>
-      <h2>{card_inner_message}</h2>
-      <div>created at:{card_created_at}</div>
-      <div>updated at:{card_updated_at}</div>
-      <div>{card_owner}</div>
-      <img src={card_image} />
-      <Link to={`/allcards/${cardID}`}>See Card Details</Link>
+      <div className="img-allcards">
+        <img className="img" src={card_image} />
+        <div className="card-bottom">
+          <div>{card_outer_message}</div>
+          <div>{card_inner_message}</div>
+          <div>created at:{card_created_at}</div>
+          <div>updated at:{card_updated_at}</div>
+          <div>{card_owner}</div>
+          <img src={card_image} />
+          <Link to={`/allcards/${cardID}`}>See Card Details</Link>
+        </div>
+      </div>
     </div>
   );
 }
