@@ -60,30 +60,30 @@ const UserData = ({ token, setUserID, setUserFollowingData }) => {
   };
 
 
-
   return (
     <div>
-      <h1>See All Users</h1>
-      
-      {userInfo.map((user) => (
-        <div className="username" key={user.username}>
-          <strong>Username: </strong>
-          <div> {user.username}</div>{" "}
-          {!following ? (
-            <button
-              key={user.id}
-              id={user.id}
-              onClick={(e) => HandleFollow(e.target.id)}
-            >
-              follow user
-            </button>
-          ) : (
-            "You Follow this user"
-          )}
-        </div>
-      ))}
-      {statusMessage && <div>{statusMessage}</div>}
-
+          <h2>See All Users</h2>
+          <div className="containerusers">
+          {userInfo.map((user) => (
+            <div className="username" key={user.username}>
+              <strong>Username: </strong>
+              <div> {user.username}</div>{" "}
+              
+              {!following ? (
+                <button className="followIt"
+                  key={user.id}
+                  id={user.id}
+                  onClick={(e) => HandleFollow(e.target.id)}
+                >
+                  follow
+                </button>
+              ) : (
+                "You Follow this user"
+              )}
+            </div>
+          ))}
+          {statusMessage && <div>{statusMessage}</div>}
+          </div>
     </div>
   );
 };

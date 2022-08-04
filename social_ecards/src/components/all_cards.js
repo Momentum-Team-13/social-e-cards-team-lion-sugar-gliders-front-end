@@ -90,7 +90,6 @@ const CardList = ({ token, username }) => {
     // );
   };
 
-
     const settings = {
         dots: true,
         infinite: true,
@@ -101,7 +100,6 @@ const CardList = ({ token, username }) => {
         adaptiveHeight: true,
         rows: 1,   
     }
-
 
   return (
     <div>

@@ -11,11 +11,8 @@ import SeeProfile from "./Components/see_profile";
 import AddUserForm from "./Components/add_user_form";
 import AllUsers from "./Components/all_users";
 import SpecificCard from "./Components/specific_card";
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
-// import listCards from './data.js';
-// import Cards from './components/Allcardscomponent'
-// import './allcards.css'
+
+
 import EditCard from "./Components/edit_card";
 import DeleteCard from "./Components/delete_card";
 
@@ -24,9 +21,7 @@ function App() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [error, setError] = useState([]);
   // const [homepageMeme, setHomepageMeme] = useState(null);
-  // const [currentCard, setCurrentCard] = useState(listCards[0])
-  // const [currentCardIndex] = useState(0)
-  // useEffect(() => {setCurrentCard(listCards[currentCardIndex])})
+
 
   const handleLogout = () => {
     // console.log(token);
@@ -56,7 +51,7 @@ function App() {
               <div className="homePage">
                 <div className="containerHomePage">
                   {" "}
-                  <br />
+                  
                   <div> Hello, you're logged in as {username}</div>
                   <button id="buttonlogout" onClick={handleLogout}>
                     {" "}

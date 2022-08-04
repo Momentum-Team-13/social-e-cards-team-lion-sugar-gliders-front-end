@@ -22,7 +22,7 @@ export default function DeleteCard({ token }) {
       .then(navigate("/seeprofile"));
   };
   return (
-    <div>
+    <div className="deletecard">
       <div>Are You Sure You Want to Delete?</div>
       <div onClick={answerYes}>Yes</div>
       <div onClick={answerNo}>No</div>

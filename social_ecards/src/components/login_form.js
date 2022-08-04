@@ -49,7 +49,7 @@ export default function LoginForm({ token, setToken }) {
       
         <h1 onClick={() => handleLogIn()}> Log In </h1>
         <h1 onClick={() => console.log("handle Create users")}> Create user</h1>
-        <h2> Welcome to our page</h2>
+        <h5> Welcome to our page</h5>
         <br />
         
         
