@@ -47,14 +47,14 @@ export default function LoginForm({ token, setToken }) {
   return (
     <div className="loginHomepage">
       
-        <h1 onClick={() => handleLogIn()}> Log In </h1>
-        <h1 onClick={() => console.log("handle Create users")}> Create user</h1>
+        <h1 onClick={() => handleLogIn()}> </h1>
+        <h1 onClick={() => console.log("handle Create users")}></h1>
         <h5> Welcome to our page</h5>
         <br />
         
         
           <div id="container-LogIn">
-              <h3>Please Log In</h3>
+              <h3></h3>
               <form>
                 <label htmlFor="username-field" style={{ fontSize: "20px" }}>
                   {" "}

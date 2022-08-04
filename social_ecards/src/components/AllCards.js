@@ -11,29 +11,35 @@ import SpecificCard from "./specific_card";
 export default function AllCards({ token, username }) {
   const [totalCards, setTotalCards] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
+  const [cardData, setCardData] = useState([]);
+  const navigate = useNavigate();
+  const [detailPractice, setDetailPractice] = useState(false);
 
-  // useEffect = () => {
-  axios
-    .get(`${baseURL}ecards/`, {
-      headers: { Authorization: `Token ${token}` },
-    })
-    .then((res) => {
-      console.log(res);
-      let total = res.data.length;
-      setTotalCards(total);
-      // const CARDS = res.data;
-      // console.log(CARDS.map((card) => card.id));
-      // setCardData(CARDS);
-    }, [])
-    .catch((res) => console.log(res));
-  // };
+  useEffect(() => {
+
+    axios
+      .get(`${baseURL}ecards/`, {
+        headers: { Authorization: `Token ${token}` },
+      })
+      .then((res) => {
+        const CARDS = res.data;
+        let total = res.data.length;
+        setTotalCards(total);
+        setCardData(CARDS);
+        CARDS.map((card) => {
+          const cardID = cardData.id;
+          return cardID;
+        });
+      }, [])
+      .catch((res) => console.log(res));
+  }, [])
 
   return (
     <div>
-      <h1>See all cards</h1>
+      <h2>See all cards</h2>
       <div className="containerallcards">
         <Index username={username} totalCards={totalCards} />
-        <CardList token={token} />
+        <CardList cardData={cardData} token={token} />
       </div>
       <div></div>
     </div>
@@ -43,44 +49,29 @@ export default function AllCards({ token, username }) {
 const Index = ({ username, totalCards }) => {
   return (
     <>
-      <div>
+      <div id="hasallcards" style={{ marginLeft:"40px" }}>
         {username} has {totalCards} total cards
       </div>
     </>
   );
 };
 
-const CardList = ({ token }) => {
-  const [cardData, setCardData] = useState([]);
-  const [cardIndex, setCardIndex] = useState(0);
-  const navigate = useNavigate();
+const CardList = ({ token, cardData }) => {
   const [detailPractice, setDetailPractice] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
 
   // Carousel
   const settings = {
     dots: true,
     infinite: true,
     speed: 280,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
     adaptiveHeight: true,
     rows: 1,
   };
 
-  axios
-    .get(`${baseURL}ecards/`, {
-      headers: { Authorization: `Token ${token}` },
-    })
-    .then((res) => {
-      const CARDS = res.data;
-      setCardData(CARDS);
-      CARDS.map((card) => {
-        const cardID = cardData.id;
-        return cardID;
-      });
-    }, [])
-    .catch((res) => console.log(res));
 
   const handleCardSelect = ({ card }) => {
     // const { cardID } = useParams;
@@ -112,10 +103,10 @@ const CardList = ({ token }) => {
                 handleCardSelect={handleCardSelect}
               />
 
-              <div onClick={(e) => handleCardSelect({ card })}>See Card</div>
+              <div onClick={(e) => handleCardSelect({ card })}></div>
             </div>
           ))}
-          {/* <Link to={`/specificcard${cardID}`} /> */}
+          {/* <Link to={`/specificcard${cardID}`}></Link> */}
         </Slider>
       </div>
     </div>
