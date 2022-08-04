@@ -70,10 +70,10 @@ export default function CreateCard({ token, username }) {
 
   return (
     <div className="cardForm">
-      <h3>create a card</h3>
+      <h2>Create a card</h2>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label htmlFor="inner-message">Inner Message</label>
+          <label htmlFor="inner-message"><h3>Inner Message</h3></label>
           <input
             id="inner-message"
             type="text"
@@ -81,7 +81,7 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-          <label htmlFor="outer-message">Outer Message</label>
+          <label htmlFor="outer-message"><h3>Outer Message</h3></label>
           <input
             id="outer-message"
             type="text"
@@ -89,8 +89,10 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
+          <br/>
           {/* <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
           <img alt="card-decoration" src="https://placekitten.com/200/300/" />
+          <br/>
           <label>chose placekitten</label>
           <input
             type="checkbox"
@@ -137,8 +139,8 @@ export default function CreateCard({ token, username }) {
           </div>
         </div>
         <br />
-        <button onClick={() => CallInCard()}>Add Card</button>
-        <button> Add to Drafts</button>
+        <button id="buttonAddcard" onClick={() => CallInCard()}>Add Card</button>
+        <button id="buttonDraftcard"> Add to Drafts</button>
         {statusMessage && <div>Your card has been {statusMessage}</div>}
         {error && <div>{error}</div>}
       </form>

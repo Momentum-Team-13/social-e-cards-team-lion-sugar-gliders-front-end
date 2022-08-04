@@ -2,31 +2,26 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import he from "he";
-import AllCards from "./Components/all_cards";
+import AllCards from "./components/all_cards";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
-import LoginForm from "./Components/login_form.js";
+import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
-import CreateCard from "./Components/create_card";
-import SeeProfile from "./Components/see_profile";
-import AddUserForm from "./Components/add_user_form";
-import AllUsers from "./Components/all_users";
-import SpecificCard from "./Components/specific_card";
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
-// import listCards from './data.js';
-// import Cards from './components/Allcardscomponent'
-// import './allcards.css'
-import EditCard from "./Components/edit_card";
-import DeleteCard from "./Components/delete_card";
+import CreateCard from "./components/create_card";
+import SeeProfile from "./components/see_profile";
+import AddUserForm from "./components/add_user_form";
+import AllUsers from "./components/all_users";
+import SpecificCard from "./components/specific_card";
+
+
+import EditCard from "./components/edit_card";
+import DeleteCard from "./components/delete_card";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [error, setError] = useState([]);
   // const [homepageMeme, setHomepageMeme] = useState(null);
-  // const [currentCard, setCurrentCard] = useState(listCards[0])
-  // const [currentCardIndex] = useState(0)
-  // useEffect(() => {setCurrentCard(listCards[currentCardIndex])})
+
 
   const handleLogout = () => {
     // console.log(token);
@@ -56,7 +51,7 @@ function App() {
               <div className="homePage">
                 <div className="containerHomePage">
                   {" "}
-                  <br />
+                  
                   <div> Hello, you're logged in as {username}</div>
                   <button id="buttonlogout" onClick={handleLogout}>
                     {" "}
