@@ -24,7 +24,7 @@ export default function SpecificCardData({ token }) {
       card_outer_message={card.card_outer_message}
       card_created_at={card.created_at}
       card_updated_at={card.updated_at}
-      card_owner={card.card_owner.username}
+      // card_owner={card.card_owner.username}
       card_image={card.card_image_file ? card.card_image_file : card.card_image}
     />
   );
