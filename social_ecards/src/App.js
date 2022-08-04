@@ -10,8 +10,7 @@ import CreateCard from "./components/create_card";
 import SeeProfile from "./components/see_profile";
 import AddUserForm from "./components/add_user_form";
 import AllUsers from "./components/all_users";
-import SpecificCard from "./components/specific_card";
-
+import SpecificCardData from "./components/specific_card_data";
 
 import EditCard from "./components/edit_card";
 import DeleteCard from "./components/delete_card";
@@ -21,7 +20,6 @@ function App() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [error, setError] = useState([]);
   // const [homepageMeme, setHomepageMeme] = useState(null);
-
 
   const handleLogout = () => {
     // console.log(token);
@@ -51,7 +49,6 @@ function App() {
               <div className="homePage">
                 <div className="containerHomePage">
                   {" "}
-                  
                   <div> Hello, you're logged in as {username}</div>
                   <button id="buttonlogout" onClick={handleLogout}>
                     {" "}
@@ -101,7 +98,7 @@ function App() {
               />
               <Route
                 path="/allcards/:cardID"
-                element={<SpecificCard token={token} />}
+                element={<SpecificCardData token={token} />}
               />
             </Routes>
           </div>

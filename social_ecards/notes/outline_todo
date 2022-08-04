@@ -1,31 +1,72 @@
 https://github.com/Momentum-Team-13/social-e-cards-team-sugar-gliders-backend/blob/main/api.docs.md
 
 Create User
+url: <BASE_URL>/auth/users/
 [x] --> add email field to add user form?
+
 Login
+url: <BASE_URL>/auth/token/login/
 [x] --> fix login form not showing?
+
 Logout
+url: <BASE_URL>/auth/token/logout/
 [x]
+
+Get My Details
+url: <BASE_URL>/auth/users/me/
+[x]
+
 Get Profile Details
-[x]
-Get User Details
 []
+
 Follow a user
-[] --> i think it'd be easiest for me to come back to this after I can make a card
-Get All Followers
-[]
-Remove User from following list
-[]
-View All Cards
-[/]
-Create  Card
+url: <BASE_URL>/followers/
 [x]
+
+Get All Followers for a user
+url: <BASE_URL>/followers/
+[]
+
+Remove User from following list
+url: <BASE_URL>/followers/<ID>
+[x]
+
+View All Cards
+url: <BASE_URL>/ecards/
+[?]
+
+Create  Card
+url: <BASE_URL>/ecards/
+[x]
+
 View My Cards
-[/]
+url: <BASE_URL>/ecards/?list=me
+[x]
+
+View followers cards
+<BASE_URL>/ecards/?list=following
+[]
+
+View My Selected Card
+url: <BASE_URL>/ecards/<int:pk
+[?] without username i can select card... but i think w/o username data
+
 View Selected Cards
-[]
+[x]
+
 Edit/Delete Selected Cards
+url: <BASE_URL>/ecards/<int:pk
+url: <BASE_URL>/ecards/<int:pk
+[x]
+
+View Users
+url: <BASE_URL>/users/
 []
+
+Edit My User
+url: <BASE_URL>/users/me
+[]
+
 
 - ask about how to set variables during map
 - reformat the way timestamps appear

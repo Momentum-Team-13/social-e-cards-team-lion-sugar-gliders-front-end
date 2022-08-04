@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { baseURL } from "../helpers/constants";
 import axios from "axios";
 import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
-import { createRef } from "react";
 
 export default function CreateCard({ token, username }) {
-  // add dropdown to include 3 predefined colors. currently data returns: 00FF00
   const [innerMessage, setInnerMessage] = useState("");
   const [outerMessage, setOuterMessage] = useState("");
   const [cardColor, setCardColor] = useState(null);
@@ -13,7 +11,7 @@ export default function CreateCard({ token, username }) {
   const [imgSrc, setImgSrc] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
   const [checked, setChecked] = useState(false);
-  // const [fileSrc, setFileSrc] = useState(null);
+  const [fileSrc, setFileSrc] = useState(null);
 
   // console.log(token);
   // console.log(username);
@@ -35,26 +33,25 @@ export default function CreateCard({ token, username }) {
     setImgSrc(e.target.id);
   };
 
-  // const handleFileUpload = (props) => {
-  //   const fileObject = props.target.files;
-  //   setFileSrc(fileObject[0]);
-  // };
+  const handleFileUpload = (props) => {
+    const fileObject = props.target.files;
+    console.log(fileObject[0]);
+    setFileSrc(fileObject[0]);
+  };
 
   const CallInCard = () => {
+    const formData = new FormData();
+    formData.append("card_inner_message", innerMessage);
+    formData.append("card_outer_message", outerMessage);
+    if (fileSrc) {
+      formData.append("card_image_file", fileSrc, fileSrc.name);
+    } else {
+      formData.append("card_image", imgSrc);
+    }
     axios
-      .post(
-        `${baseURL}ecards/`,
-        {
-          card_inner_message: innerMessage,
-          card_outer_message: outerMessage,
-          card_image: imgSrc,
-          // card_image_file: fileSrc,
-          card_color_list: cardColor,
-        },
-        {
-          headers: { Authorization: `Token ${token}` },
-        }
-      )
+      .post(`${baseURL}ecards/`, formData, {
+        headers: { Authorization: `Token ${token}` },
+      })
       .then((res) => {
         let statusMessage = res.request.statusText;
         setStatusMessage(statusMessage);
@@ -89,6 +86,8 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
+
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
           <br/>
           {/* <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
           <img alt="card-decoration" src="https://placekitten.com/200/300/" />
