@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import he from "he";
-import AllCards from "./components/all_cards";
+import AllCards from "./components/AllCards";
 import { Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/login_form.js";
 import { baseURL } from "./helpers/constants";
