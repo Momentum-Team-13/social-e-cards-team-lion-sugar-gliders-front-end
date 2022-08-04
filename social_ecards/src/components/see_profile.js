@@ -31,7 +31,6 @@ export default function SeeProfile({ token, username }) {
       })
       .then((res) => {
         let followers = res.data;
-        console.log(followers);
         setFollowerList(followers);
       })
       .catch((res) => console.log(res));
