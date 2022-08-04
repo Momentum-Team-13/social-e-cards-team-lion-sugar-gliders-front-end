@@ -137,7 +137,10 @@ const CardList = ({ token }) => {
           <h2>{card.card_inner_message}</h2>
           <p>Card created at: {card.created_at}</p>
           <p>Card updated at: {card.updated_at}</p>
-          <img src={card.card_image} alt="place kitten card cover" />
+          <img
+            src={card.card_image_file ? card.card_image_file : card.card_image}
+            alt="place kitten card cover"
+          />
           <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
           <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div>
         </div>

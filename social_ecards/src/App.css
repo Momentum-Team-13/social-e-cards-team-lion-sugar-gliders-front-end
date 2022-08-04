@@ -33,11 +33,11 @@ display: inline-flex;
   
 }
 
-#cardPage{
+/* #cardPage{
   display:flex;
   flex-directon: row;
   width: 300px;
-}
+} */f
 
 img{
     width: 75%;
@@ -67,6 +67,7 @@ img{
 .username{
   display:flex;
   flex-direction:row;
+}
 
 .follower_list{
   border: 2px solid black;
@@ -79,7 +80,6 @@ img{
 .navbar{display:flex;
 flex-direction:row;}
   
-}
 
 /* body {
   background-image: url("BKG.jpg");
@@ -180,3 +180,5 @@ flex-direction:row;}
   font-size: 20px;
   color:#c71585;
 }
+
+img{width: 200px;}
