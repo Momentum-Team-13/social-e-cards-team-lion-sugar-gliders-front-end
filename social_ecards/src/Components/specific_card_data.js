@@ -15,7 +15,7 @@ export default function SpecificCardData({ token }) {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setCard(res.data);
       });
   });

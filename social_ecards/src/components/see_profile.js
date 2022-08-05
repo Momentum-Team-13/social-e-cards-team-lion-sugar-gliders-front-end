@@ -23,7 +23,7 @@ export default function SeeProfile({ token, username }) {
       })
       .then((res) => {
         setProfileInfo(res.data);
-        console.log(res);
+        // console.log(res);
       })
       .catch((res) => console.log(res));
   };
