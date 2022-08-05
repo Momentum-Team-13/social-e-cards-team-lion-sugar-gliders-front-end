@@ -1,4 +1,5 @@
-import "./App.css";
+// import "./App.css";
+import "./plain.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import he from "he";

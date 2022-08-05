@@ -67,7 +67,7 @@ export default function EditCard({ token }) {
   };
 
   return (
-    <div className="cardForm">
+    <div className="editCardForm">
       <h3>Edit a card</h3>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>

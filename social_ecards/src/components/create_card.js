@@ -70,7 +70,9 @@ export default function CreateCard({ token, username }) {
       <h2>Create a card</h2>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label htmlFor="inner-message"><h3>Inner Message</h3></label>
+          <label htmlFor="inner-message">
+            <h3>Inner Message</h3>
+          </label>
           <input
             id="inner-message"
             type="text"
@@ -78,7 +80,9 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-          <label htmlFor="outer-message"><h3>Outer Message</h3></label>
+          <label htmlFor="outer-message">
+            <h3>Outer Message</h3>
+          </label>
           <input
             id="outer-message"
             type="text"
@@ -86,13 +90,12 @@ export default function CreateCard({ token, username }) {
           />
         </div>
         <div>
-
           <input type="file" onChange={(e) => handleFileUpload(e)} />
-          <br/>
+          <br />
           {/* <input type="file" onChange={(e) => handleFileUpload(e)} /> */}
           <img alt="card-decoration" src="https://placekitten.com/200/300/" />
-          <br/>
-          <label>chose placekitten</label>
+          <br />
+          <label>choose placekitten</label>
           <input
             type="checkbox"
             id="https://placekitten.com/200/300/"
@@ -138,8 +141,10 @@ export default function CreateCard({ token, username }) {
           </div>
         </div>
         <br />
-        <button id="buttonAddcard" onClick={() => CallInCard()}>Add Card</button>
-        <button id="buttonDraftcard"> Add to Drafts</button>
+        <button id="buttonAddcard" onClick={() => CallInCard()}>
+          Add Card
+        </button>
+        {/* <button id="buttonDraftcard"> Add to Drafts</button> */}
         {statusMessage && <div>Your card has been {statusMessage}</div>}
         {error && <div>{error}</div>}
       </form>

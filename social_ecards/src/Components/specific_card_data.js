@@ -7,13 +7,17 @@ import { useParams } from "react-router-dom";
 export default function SpecificCardData({ token }) {
   const [card, setCard] = useState({});
   let params = useParams();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     axios
       .get(`${baseURL}ecards/${params.cardID}`, {
         headers: { Authorization: `Token ${token}` },
       })
-      .then((res) => setCard(res.data));
+      .then((res) => {
+        console.log(res);
+        setCard(res.data);
+      });
   });
 
   return (
@@ -26,6 +30,8 @@ export default function SpecificCardData({ token }) {
       card_updated_at={card.updated_at}
       // card_owner={card.card_owner.username}
       card_image={card.card_image_file ? card.card_image_file : card.card_image}
+      // border_color={border_color}
+      // card_image={card.card_image}
     />
   );
 }

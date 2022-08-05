@@ -2,10 +2,10 @@ import axios from "axios";
 import { baseURL } from "../helpers/constants";
 import { useEffect, useState } from "react";
 import { useResolvedPath, useNavigate } from "react-router-dom";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import moment from "moment";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 
 export default function SeeProfile({ token, username }) {
   const [profileInfo, setProfileInfo] = useState(null);
@@ -116,6 +116,7 @@ export default function SeeProfile({ token, username }) {
 
 const CardList = ({ token }) => {
   const [myCards, setMyCards] = useState([]);
+  const [expanded, setExpanded] = useState(false);
   let navigate = useNavigate();
 
   const handleEditCard = (props) => {
@@ -135,6 +136,7 @@ const CardList = ({ token }) => {
       headers: { Authorization: `Token ${token}` },
     })
     .then((res) => {
+      // console.log(res);
       let cards = res.data;
       setMyCards(cards);
     });
@@ -152,39 +154,56 @@ const CardList = ({ token }) => {
 
   return (
     <div>
-      <Slider {...settings}>
-        {myCards.map((card) => (
-          <div className="card" id={card.id}>
+      {/* <Slider {...settings}> */}
+      {myCards.map((card) => (
+        <div className="card" id={card.id}>
+          {/* <img
+            className="img"
+            src={card.card_image}
+            alt="place kitten card cover"
+          /> */}
+          <div>{card.card_outer_message}</div>
+          <div>{card.card_color}</div>
+          <div className="see-profilecards">
+            <div>
+              created:
+              {moment(card.card_created_at).format("MMM Do YY, h:mm a")}
+            </div>
+            <div>
+              updated:{" "}
+              {moment(card.card_updated_at).format("MMM Do YY, h:mm a")}
+            </div>
             <img
-              className="img"
-              src={card.card_image}
+              src={
+                card.card_image_file ? card.card_image_file : card.card_image
+              }
               alt="place kitten card cover"
             />
-            <div>{card.card_outer_message}</div>
-            <div>{card.card_inner_message}</div>
-            <div className="see-profilecards">
-              <p>Card created at: {card.created_at}</p>
-              <p>Card updated at: {card.updated_at}</p>
-              <img
-                src={
-                  card.card_image_file ? card.card_image_file : card.card_image
-                }
-                alt="place kitten card cover"
-              />
-              <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
-              <div onClick={(e) => handleDeleteCard({ card })}>
-                Delete card{" "}
-              </div>
-              <button onClick={(e) => handleEditCard({ card })}>
-                Edit Card
-              </button>
-              <button onClick={(e) => handleDeleteCard({ card })}>
-                Delete card{" "}
-              </button>
-            </div>
+            {!expanded ? (
+              <div onClick={(e) => setExpanded(true)}>see inner message</div>
+            ) : (
+              <InnerMessage card_inner_message={card.card_inner_message} />
+            )}
+            <br />
+            <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
+            <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div>
+            <button onClick={(e) => handleEditCard({ card })}>Edit Card</button>
+            <button onClick={(e) => handleDeleteCard({ card })}>
+              Delete card{" "}
+            </button>
           </div>
-        ))}
-      </Slider>
+        </div>
+      ))}
+      {/* </Slider> */}
+    </div>
+  );
+};
+
+const InnerMessage = ({ card_inner_message }) => {
+  return (
+    <div>
+      {" "}
+      <div>{card_inner_message}</div>
     </div>
   );
 };

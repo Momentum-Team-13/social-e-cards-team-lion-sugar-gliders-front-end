@@ -2,8 +2,6 @@ import axios from "axios";
 import { baseURL } from "../helpers/constants";
 import { useState, useEffect } from "react";
 
-
-
 export default function AllUsers({ token, username }) {
   const [userData, setUserData] = useState([]);
   const [userID, setUserID] = useState("");
@@ -27,7 +25,8 @@ export default function AllUsers({ token, username }) {
 const UserData = ({ token, setUserID, setUserFollowingData }) => {
   const [userInfo, setUserInfo] = useState([]);
   const [statusMessage, setStatusMessage] = useState("");
-  const [following, setFollowing] = useState(false);
+  const [followingStatus, setFollowingStatus] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   axios
     .get(`${baseURL}users/`, {
@@ -39,7 +38,7 @@ const UserData = ({ token, setUserID, setUserFollowingData }) => {
     }, []);
 
   const HandleFollow = (props) => {
-    setFollowing(true);
+    setFollowingStatus(true);
     let intPK = props;
     console.log(intPK);
     setUserID(intPK);
@@ -59,31 +58,45 @@ const UserData = ({ token, setUserID, setUserFollowingData }) => {
       .catch((res) => console.log(res));
   };
 
-
   return (
     <div>
-          <h2>See All Users</h2>
-          <div className="containerusers">
-          {userInfo.map((user) => (
-            <div className="username" key={user.username}>
-              <strong>Username: </strong>
-              <div> {user.username}</div>{" "}
-              
-              {!following ? (
-                <button className="followIt"
-                  key={user.id}
-                  id={user.id}
-                  onClick={(e) => HandleFollow(e.target.id)}
-                >
-                  follow
-                </button>
-              ) : (
-                "You Follow this user"
-              )}
-            </div>
-          ))}
-          {statusMessage && <div>{statusMessage}</div>}
+      <h2>See All Users</h2>
+      <div className="containerusers">
+        {userInfo.map((user) => (
+          <div className="username" key={user.username}>
+            <strong>Username: </strong>
+            <div> {user.username}</div>{" "}
+            <button
+              className="followIt"
+              key={user.id}
+              id={user.id}
+              onClick={(e) => HandleFollow(e.target.id)}
+            >
+              follow
+            </button>
+            {!followingStatus ? "" : <div>You Follow this user</div>}
           </div>
+        ))}
+        {expanded ? (
+          <div onClick={(e) => setExpanded(true)}>see inner message</div>
+        ) : (
+          <InnerMessage />
+        )}
+
+        {statusMessage && <div>{statusMessage}</div>}
+      </div>
+    </div>
+  );
+};
+
+const FollowUsers = () => {
+  return <div>"You Follow this user"</div>;
+};
+const InnerMessage = () => {
+  return (
+    <div>
+      {" "}
+      <div>hello</div>
     </div>
   );
 };
