@@ -1,7 +1,7 @@
-import SpecificCard from "./specific_card";
+import SpecificCard from "../components/specific_card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { baseURL } from "../helpers/constants";
+import { baseURL } from "./constants";
 import { useParams } from "react-router-dom";
 
 export default function SpecificCardData({ token }) {

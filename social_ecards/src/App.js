@@ -11,7 +11,7 @@ import CreateCard from "./components/create_card";
 import SeeProfile from "./components/see_profile";
 import AddUserForm from "./components/add_user_form";
 import AllUsers from "./components/all_users";
-import SpecificCardData from "./components/specific_card_data";
+import SpecificCardData from "./helpers/specific_card_data";
 
 import EditCard from "./components/edit_card";
 import DeleteCard from "./components/delete_card";
