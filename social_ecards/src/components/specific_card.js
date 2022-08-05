@@ -20,13 +20,14 @@ export default function SpecificCard({
     <div>
       <div className="img-allcards">
         <img className="img" src={card_image} />
-        <div className="card-bottom">
+        <div className="innerOuterText-allcards">
           <div>{card_outer_message}</div>
-          <div>{card_inner_message}</div>
+          <div>{card_inner_message}</div></div>
+        <div className="card-bottom">
           <div>created at:{card_created_at}</div>
           <div>updated at:{card_updated_at}</div>
           <div>{card_owner}</div>
-          <img src={card_image} />
+          {/* <img src={card_image} /> */}
           <Link to={`/allcards/${cardID}`}>See Card Details</Link>
         </div>
       </div>

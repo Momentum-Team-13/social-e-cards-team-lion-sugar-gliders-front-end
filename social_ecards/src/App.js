@@ -44,8 +44,8 @@ function App() {
     <div className="entirety">
       {token ? (
         <>
-          <div className="navbar">
-            <nav>
+          <div>
+            <nav className="navbar">
               <div className="homePage">
                 <div className="containerHomePage">
                   {" "}

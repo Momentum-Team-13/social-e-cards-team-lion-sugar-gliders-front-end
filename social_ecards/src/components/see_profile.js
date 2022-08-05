@@ -143,7 +143,7 @@ const CardList = ({ token }) => {
     dots: true,
     infinite: true,
     speed: 280,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
     adaptiveHeight: true,
@@ -160,21 +160,19 @@ const CardList = ({ token }) => {
               src={card.card_image}
               alt="place kitten card cover"
             />
+            <div className="innerOuterText">
             <div>{card.card_outer_message}</div>
-            <div>{card.card_inner_message}</div>
+            <div>{card.card_inner_message}</div></div>
             <div className="see-profilecards">
               <p>Card created at: {card.created_at}</p>
               <p>Card updated at: {card.updated_at}</p>
-              <img
+              {/* <img
                 src={
                   card.card_image_file ? card.card_image_file : card.card_image
                 }
                 alt="place kitten card cover"
-              />
-              <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
-              <div onClick={(e) => handleDeleteCard({ card })}>
-                Delete card{" "}
-              </div>
+              /> */}
+            
               <button onClick={(e) => handleEditCard({ card })}>
                 Edit Card
               </button>
