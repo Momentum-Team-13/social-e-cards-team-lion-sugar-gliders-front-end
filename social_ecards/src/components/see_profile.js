@@ -185,8 +185,8 @@ const CardList = ({ token }) => {
               <InnerMessage card_inner_message={card.card_inner_message} />
             )}
             <br />
-            <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
-            <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div>
+            {/* <div onClick={(e) => handleEditCard({ card })}>Edit Card</div>
+            <div onClick={(e) => handleDeleteCard({ card })}>Delete card </div> */}
             <button onClick={(e) => handleEditCard({ card })}>Edit Card</button>
             <button onClick={(e) => handleDeleteCard({ card })}>
               Delete card{" "}
