@@ -1,0 +1,339 @@
+
+
+body{
+  background-color: rgb(20, 134, 159);
+}
+h2{
+  text-align: center;
+  color: bisque;
+  justify-content: center;
+  font-size: 50px;
+  margin-top: -1%;
+}
+h3{
+  text-align: left;
+  color: bisque;
+  margin-left: 5%;
+  font-size: 15px;
+}
+h4{
+  text-align: left;
+  color: bisque;
+  margin-left: 5%;
+  font-size: 20px;
+}
+h5{
+  text-align: center;
+  color: bisque;
+  justify-content: center;
+  font-size: 73px;
+  margin-top: -1%;
+}
+
+
+/* .container{
+display: inline-flex;
+} */
+
+.card_008000{
+  background-color: #008000;
+  border: 5px black solid;
+}
+
+
+
+
+
+/* CAROUSEL CARDS */
+
+.slick-slide > div {
+  margin:   20px;
+}
+.card{
+  border: 1px solid #fff;
+  background-color: rgb(244, 182, 137);
+  /* background-color: #8A9A5B; */
+/* background-color: #FFA07A; */
+/* background: rgba(255, 255, 255, 0.2); */
+  border-radius: 8px;
+  overflow: hidden;
+  height: 550px;
+  /* color: brown;  */
+  width: 70%;
+  /* margin: 0 auto; */
+  /* margin-top: 0px; */
+  position: relative;
+}
+
+.img-allcards {
+    width: 500px;
+    height: 350px;
+    
+  } 
+
+.img-allcards img{
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+img{
+    width: 75%;
+    height: 70%;
+    object-fit: cover;
+    align-items: center;
+    margin-left: 0%;
+} 
+.innerOuterText-allcards{
+  margin-left: 15%;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+.card-bottom{
+  color: rgb(144, 10, 10);
+  margin-left: 10px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
+
+/* CREATING A CARD CSS */
+
+.cardForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5%;
+    
+}
+#inner-message, #outer-message{
+  border-radius: 5px;
+  width: 250px;
+  
+
+}
+
+#green{  background-color: #00FF00; border-radius: 12px;}
+#red{  background-color: #ff0000;  border-radius: 12px;}
+#blue{  background-color:  #0000FF;  border-radius: 12px;}
+
+.colorbox{
+  width:50px;
+  height: 50px;
+  margin: 10px;
+}
+.colorChoices{
+  display:inline-flex;
+}
+#buttonAddcard, #buttonDraftcard{
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+}
+
+.username{
+  display:flex;
+  flex-direction:row;
+}
+
+.follower_list{
+  border: 2px solid black;
+}
+
+.individual_follower{
+  border: 2px solid black;
+}
+
+.navbar{display:flex;
+flex-direction:row;}
+
+
+
+
+/* LOGIN PAGE */
+
+.loginHomepage {
+padding-top: 10%;
+background-color: 	#e9967a;
+background-image: url("BKG.jpg") ;
+background-repeat: repeat;
+background-size: 148%;
+font-family: "work sans";
+/* padding-bottom: 10%; */
+margin-top: -9%;
+}
+#container-LogIn{
+  max-width: 700px;
+  min-width: 300px;
+  height: 500px;
+  width: 50%;
+  font-size: 1.5rem;
+  border-radius: 25px;
+  text-align: center;
+  padding-bottom: 15%;
+  color: rgb(89, 87, 87);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -30px;
+  margin-left: 28%; 
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+#username-field, #password-field {
+  color: rgb(162, 91, 103);
+  font-weight: bold;
+  width: 70%;
+  padding: 0 5px;
+  height: 30px;
+  background: none;
+  background-color: none;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #5f5f9a;
+  text-align: center;
+}
+#buttonlogin, #button_adduser{
+  border-radius: 25px;
+  width: 80%;
+  height: 40px;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(90deg, rgba(80,130,195,1) 0%, rgb(226, 117, 188) 100%);
+  border: 0px;
+  cursor: pointer;
+}
+#buttonlogin:hover, #button_adduser {
+    background-color: #008000;
+}
+.add_user{
+  color: rgb(89, 87, 87);
+}
+
+
+
+/* MENU PAGE OPTIONS CSS */
+
+.homePage{
+
+  padding-top: 2%;
+  /* background: rgba(255, 255, 255, 0.1); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: "work sans";
+  padding-bottom: 5%;
+
+
+}
+
+
+.containerHomePage{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 2%;
+  font-size: 40px;
+  color:  bisque;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 100%;
+}
+
+#buttonlogout{
+  background-color: #91917d;
+  border: none;
+  color: white;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+}
+#buttonlogout:hover {
+  background-color: #0ab5c8;
+}
+
+
+.menu{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  letter-spacing: 2px;
+  padding-right: 10%;
+  margin-top: 5%;
+  font-size: 19px;
+  color: rgb(152, 87, 7);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* SEE YOUR PROFILE */
+
+#seeinfo {
+  color: rgb(200, 46, 46);
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 8%;
+  padding: 5px 20px;
+}
+.innerOuterText{
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.see-profilecards{
+  color: rgb(144, 10, 10);
+  margin-left: 10px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.deletecard{
+  color:rgb(66, 7, 108);
+  background-color: rgb(233, 250, 250);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30%;
+  cursor: pointer;
+}
+
+/* SEE ALL USERS */
+
+.containerusers{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  /* grid-template-rows: auto auto auto; */
+  width: 100%;
+  padding: 10px 20px 20px;
+  margin: auto;
+
+}
+
+.username {
+  width: 500px;
+  height: 50px;
+  margin: 15px;
+  float: left;
+  line-height: 40px;
+}
+
+.followIt{
+  padding: 8px 20px;
+  border-radius: 15px;
+  width: 100px;
+}

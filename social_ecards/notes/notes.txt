@@ -1,0 +1,67 @@
+questions?
+- what does the mockoon do? what is the difference between that server and the npm runserver?
+
+- authentication?
+
+- how to push everything but my notes
+
+- questions about what/how exactly to commit my branch
+
+AUTHENTICATION:
+make a post request to the  endpoint
+in the body of the post request, we include JSON which includes 2 keys:
+user name & password
+
+in response, we should get a piece of JSON with one key that gives us an auth_token
+
+cookies are a semi permanent place to stash information that live in key/value pairs that live on our personal browsers
+
+after submitting a loginForm you receive back a sessionID (like a stamp on the hand at a show) (sessionID is in browser, auth_token is in API)
+
+work on .catch()
+
+staying "logged in" means your auth_token/sessionID stays the same
+
+we set the auth_token as state
+
+include errors from API ifError()
+
+localStorage.setItem('highScore', highScore);
+
+localStorage.setItem('token', <TOKEN>)
+
+localStorage.getItem('token')
+
+const isLoggedIn = username && token
+if (! LoggedIn){
+    return <loginForm setAuth={setAuth}/>
+
+after receiving token:
+
+this happens in App.js
+const setAuth = (username, token) =>{
+    setToken(token)
+    setUsername(username)
+}
+we auth, setAuth (auth_token)
+
+const handleLogout = () =>{
+    axios.post(
+        "URL", --> url argument
+        {} --> empty object... this is for 
+        {
+            headers:{
+                authorization: `Token ${token}`
+            }
+        }
+    )
+    .then(()=>
+    setAuth('',null))
+}
+^ we have to include headers... we have to send the token when we log out and then it destroys the token
+
+want to fix: multiple messages showing when adding user instead of error/confirmation messages clearing each other out and only showing one at a time
+
+- help w/ useParams & help with putting state on correct component (for follow user button for example)
+
+format time/date
